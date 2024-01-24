@@ -14,36 +14,40 @@ import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 
 class MovilServiceTest {
 
-
+@Autowired
 MovilService movilservicio= new MovilService();
 @Autowired
 IMovilRepositorio movilrepo;
 	@Test
 	void testAdd() {
 		movilservicio.add(new Movil(1L, "modelo1", "Marca1", 1, 2, 1, 2, 1, false, 1, 1f));
-	
 		assertTrue(movilrepo.findById(1l).get().getMarca().equalsIgnoreCase("Marca1"));
 	}
-/*
+	
+	
+
 	@IgnoreForBinding
 	void testDelete() {
-		fail("Not yet implemented");
+		movilservicio.add(new Movil(1L, "modelo1", "Marca1", 1, 2, 1, 2, 1, false, 1, 1f));
+		assertFalse(movilservicio.delete(0));
 	}
 
 	@IgnoreForBinding
 	void testGetMovilById() {
-		fail("Not yet implemented");
+		movilservicio.add(new Movil(1L, "modelo1", "Marca1", 1, 2, 1, 2, 1, false, 1, 1f));
+		assertTrue(movilservicio.getById(1L).get().getModelo().equalsIgnoreCase("modelo1"));
+		
 	}
 
 	@IgnoreForBinding
 	void testFindAll() {
-		fail("Not yet implemented");
+		
 	}
 
 	@IgnoreForBinding
 	void testInsertarLista() {
-		fail("Not yet implemented");
+		
 	}
-	*/
+	
 
 }

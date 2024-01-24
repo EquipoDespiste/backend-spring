@@ -1,14 +1,14 @@
-package com.adorno;
+package com.adorno.repositorio;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class MovilRepositorioTest {
+class ProcesadorRepositorioTest {
 
 	@Test
 	void test() {
-
+		fail("Not yet implemented");
 	}
 
 }

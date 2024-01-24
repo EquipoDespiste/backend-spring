@@ -1,13 +1,10 @@
 package com.adorno.modelo;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -53,6 +50,10 @@ public class Movil {
 	
 	@ManyToOne
 	private Pantalla pantalla;
+	@ManyToOne
+	private Dimension dimension;
+	@ManyToOne
+	private Procesador procesador;
 	
 	
 }

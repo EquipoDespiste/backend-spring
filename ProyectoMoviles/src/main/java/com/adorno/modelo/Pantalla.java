@@ -23,19 +23,5 @@ public class Pantalla {
 	private String tecnologia;
 	
 	
-	public Long getId() {
-		return id;
-	}
-
-
-	public float getTamanio() {
-		return tamanio;
-	}
-
-
-	public String getTecnologia() {
-		return tecnologia;
-	}
-
 
 }

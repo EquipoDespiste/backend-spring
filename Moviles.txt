@@ -1,5 +1,5 @@
-{
-      "id": 1,
+[
+    {     
       "modelo": "iPhone 13",
       "marca": "Apple",
       "almacenamiento_gb": 128,
@@ -12,7 +12,7 @@
       "precio_actual": 999.99
     },
     {
-      "id": 2,
+      
       "modelo": "Galaxy S21",
       "marca": "Samsung",
       "almacenamiento_gb": 256,
@@ -25,7 +25,7 @@
       "precio_actual": 899.99
     },
     {
-      "id": 3,
+      
       "modelo": "OnePlus 9",
       "marca": "OnePlus",
       "almacenamiento_gb": 128,
@@ -38,7 +38,7 @@
       "precio_actual": 799.99
     },
     {
-      "id": 4,
+      
       "modelo": "Pixel 6",
       "marca": "Google",
       "almacenamiento_gb": 128,
@@ -51,7 +51,7 @@
       "precio_actual": 749.99
     },
     {
-      "id": 5,
+      
       "modelo": "Xperia 1 III",
       "marca": "Sony",
       "almacenamiento_gb": 256,
@@ -64,7 +64,7 @@
       "precio_actual": 1099.99
     },
     {
-      "id": 6,
+      
       "modelo": "Redmi Note 10",
       "marca": "Xiaomi",
       "almacenamiento_gb": 64,
@@ -77,7 +77,7 @@
       "precio_actual": 249.99
     },
     {
-      "id": 7,
+      
       "modelo": "ZenFone 8",
       "marca": "ASUS",
       "almacenamiento_gb": 128,
@@ -90,7 +90,7 @@
       "precio_actual": 699.99
     },
     {
-      "id": 8,
+      
       "modelo": "Moto G Power",
       "marca": "Motorola",
       "almacenamiento_gb": 64,
@@ -103,7 +103,7 @@
       "precio_actual": 299.99
     },
     {
-      "id": 9,
+      
       "modelo": "LG Velvet",
       "marca": "LG",
       "almacenamiento_gb": 128,
@@ -116,7 +116,7 @@
       "precio_actual": 599.99
     },
     {
-      "id": 10,
+      
       "modelo": "Nokia 8.3",
       "marca": "Nokia",
       "almacenamiento_gb": 128,
@@ -128,3 +128,4 @@
       "contador_visitas": 400,
       "precio_actual": 499.99
     }
+]

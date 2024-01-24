@@ -1,78 +1,77 @@
 [
   {
-    "id": 1,
+    
     "alto": 150,
     "ancho": 70,
     "grosor": 8
   },
   {
-    "id": 2,
+    
     "alto": 160,
     "ancho": 75,
     "grosor": 9
   },
   {
-    "id": 3,
+
     "alto": 155,
     "ancho": 72,
     "grosor": 7.5
   },
 {
-    "id": 4,
+
     "alto": 155,
     "ancho": 68,
     "grosor": 8.5
   },
   {
-    "id": 5,
+
     "alto": 165,
     "ancho": 72,
     "grosor": 9.2
   },
   {
-    "id": 6,
+
     "alto": 160,
     "ancho": 71,
     "grosor": 8.8
   },
   {
-    "id": 7,
+
     "alto": 150,
     "ancho": 65,
     "grosor": 8.1
   },
   {
-    "id": 8,
+
     "alto": 170,
     "ancho": 78,
     "grosor": 9.5
   },
   {
-    "id": 9,
+
     "alto": 158,
     "ancho": 69,
     "grosor": 8.3
   },
   {
-    "id": 10,
+
     "alto": 162,
     "ancho": 73,
     "grosor": 8.9
   },
   {
-    "id": 11,
+
     "alto": 148,
     "ancho": 67,
     "grosor": 8.0
   },
   {
-    "id": 12,
+
     "alto": 175,
     "ancho": 80,
     "grosor": 9.8
   },
   {
-    "id": 13,
     "alto": 155,
     "ancho": 70,
     "grosor": 8.7

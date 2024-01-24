@@ -9,9 +9,6 @@ import com.adorno.modelo.Movil;
 
 public interface IMovilRepositorio extends JpaRepository<Movil, Long>{
 
-	
 
-	
-	
 
 }

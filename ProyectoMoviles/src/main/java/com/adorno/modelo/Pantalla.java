@@ -20,5 +20,22 @@ public class Pantalla {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private float tamanio;
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+
+	public float getTamanio() {
+		return tamanio;
+	}
+
+
+	public String getTecnologia() {
+		return tecnologia;
+	}
+
+
 	private String tecnologia;
 }

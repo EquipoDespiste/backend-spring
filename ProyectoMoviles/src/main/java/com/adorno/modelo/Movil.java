@@ -21,7 +21,6 @@ public class Movil {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Id
 	private String modelo;
 	private String marca;
 	private int almacenamiento_gb;

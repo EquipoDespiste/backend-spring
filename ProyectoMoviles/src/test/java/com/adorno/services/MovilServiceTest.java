@@ -9,8 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.adorno.modelo.Movil;
 import com.adorno.repositorio.IMovilRepositorio;
 
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
-
 
 @SpringBootTest
 class MovilServiceTest {
@@ -28,22 +26,22 @@ IMovilRepositorio movilrepo;
 		assertTrue(movilrepo.findById(1l).get().getMarca().equalsIgnoreCase("Marca1"));
 	}
 /*
-	@IgnoreForBinding
+	@Ignore
 	void testDelete() {
 		fail("Not yet implemented");
 	}
 
-	@IgnoreForBinding
+	@Ignore
 	void testGetMovilById() {
 		fail("Not yet implemented");
 	}
 
-	@IgnoreForBinding
+	@Ignore
 	void testFindAll() {
 		fail("Not yet implemented");
 	}
 
-	@IgnoreForBinding
+	@Ignore
 	void testInsertarLista() {
 		fail("Not yet implemented");
 	}

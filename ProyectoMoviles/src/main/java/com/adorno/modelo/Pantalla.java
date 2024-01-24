@@ -16,6 +16,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Pantalla {
 
+	
+	
+	public Pantalla(float tamanio, String tecnologia) {
+		super();
+		this.tamanio = tamanio;
+		this.tecnologia = tecnologia;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

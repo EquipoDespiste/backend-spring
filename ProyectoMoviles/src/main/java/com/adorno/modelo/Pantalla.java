@@ -20,6 +20,7 @@ public class Pantalla {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private float tamanio;
+	private String tecnologia;
 	
 	
 	public Long getId() {
@@ -37,5 +38,4 @@ public class Pantalla {
 	}
 
 
-	private String tecnologia;
 }

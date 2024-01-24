@@ -10,7 +10,7 @@ import com.adorno.modelo.Dimension;
 import com.adorno.repositorio.IDimensionRepositorio;
 
 @Service
-public class DimensionService {
+public class DimensionService implements Services<Dimension>{
 	
 	@Autowired
 	IDimensionRepositorio dimensionRepo;
@@ -18,11 +18,11 @@ public class DimensionService {
 	public DimensionService() {
 		super();
 	}
-	
+	@Override
 	public boolean add(Dimension dimension) {
 		return dimensionRepo.save(dimension) != null;
 	}
-	
+	@Override
 	public boolean delete (long id) {
 		boolean retorno = dimensionRepo.findById(null).isPresent();
 		if(retorno) {
@@ -32,16 +32,16 @@ public class DimensionService {
 		}
 		return retorno;
 	}
-	
-	public Optional<Dimension> getDimensionById(long id){
+	@Override
+	public Optional<Dimension> getById(long id){
 		return dimensionRepo.findById(id);
 	}
-	
+	@Override
 	public List<Dimension> findAll(){
 		return dimensionRepo.findAll();	
 		}
-	
-	public boolean insertarLista(List<Dimension> insertados) {
+	@Override
+	public boolean addAll(List<Dimension> insertados) {
 		
 		insertados.stream()
 		.forEach((dimension)->{

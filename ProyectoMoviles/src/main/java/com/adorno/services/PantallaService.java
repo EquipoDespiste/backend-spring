@@ -10,7 +10,7 @@ import com.adorno.modelo.Pantalla;
 import com.adorno.repositorio.IPantallaRepositorio;
 
 @Service
-public class PantallaService {
+public class PantallaService implements Services<Pantalla>{
 	
 	@Autowired
 	IPantallaRepositorio pantallaRepo;
@@ -18,13 +18,13 @@ public class PantallaService {
 	public PantallaService() {
 		super();
 	}
-	
+	@Override
 	public boolean add(Pantalla pantalla) {
 		return pantallaRepo.save(pantalla) != null;
 	}
-	
+	@Override
 	public boolean delete (long id) {
-		boolean retorno = pantallaRepo.findById(null).isPresent();
+		boolean retorno = pantallaRepo.findById(id).isPresent();
 		if(retorno) {
 			pantallaRepo.findById(id).ifPresent((pantalla)->{
 				pantallaRepo.delete(pantalla);
@@ -32,16 +32,16 @@ public class PantallaService {
 		}
 		return retorno;
 	}
-	
-	public Optional<Pantalla> getDimensionById(long id){
+	@Override
+	public Optional<Pantalla> getById(long id){
 		return pantallaRepo.findById(id);
 	}
-	
+	@Override
 	public List<Pantalla> findAll(){
 		return pantallaRepo.findAll();	
 		}
-	
-	public boolean insertarLista(List<Pantalla> insertados) {
+	@Override
+	public boolean addAll(List<Pantalla> insertados) {
 		
 		insertados.stream()
 		.forEach((pantalla)->{

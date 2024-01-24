@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "tamanio": 5.5,
+    "tecnologia": "LCD"
+  },
+  {
+    "id": 2,
+    "tamanio": 6.0,
+    "tecnologia": "AMOLED"
+  },
+  {
+    "id": 3,
+    "tamanio": 5.8,
+    "tecnologia": "IPS"
+  },
+  {
+    "id": 4,
+    "tamanio": 6.4,
+    "tecnologia": "OLED"
+  },
+  {
+    "id": 5,
+    "tamanio": 5.7,
+    "tecnologia": "Super AMOLED"
+  },
+  {
+    "id": 6,
+    "tamanio": 6.2,
+    "tecnologia": "Retina"
+  },
+  {
+    "id": 7,
+    "tamanio": 5.9,
+    "tecnologia": "LCD"
+  },
+  {
+    "id": 8,
+    "tamanio": 6.3,
+    "tecnologia": "AMOLED"
+  },
+  {
+    "id": 9,
+    "tamanio": 5.6,
+    "tecnologia": "IPS"
+  },
+  {
+    "id": 10,
+    "tamanio": 6.1,
+    "tecnologia": "OLED"
+  }
+]

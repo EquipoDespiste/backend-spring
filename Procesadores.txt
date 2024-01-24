@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "tipo": "Snapdragon 865",
+    "nucleos": 8,
+    "velocidad_max": 2.84
+  },
+  {
+    "id": 2,
+    "tipo": "Exynos 990",
+    "nucleos": 8,
+    "velocidad_max": 2.73
+  },
+  {
+    "id": 3,
+    "tipo": "A13 Bionic",
+    "nucleos": 6,
+    "velocidad_max": 2.66
+  },
+  {
+    "id": 4,
+    "tipo": "Kirin 990",
+    "nucleos": 8,
+    "velocidad_max": 2.86
+  },
+  {
+    "id": 5,
+    "tipo": "Dimensity 1000",
+    "nucleos": 8,
+    "velocidad_max": 2.6
+  },
+  {
+    "id": 6,
+    "tipo": "Snapdragon 855",
+    "nucleos": 8,
+    "velocidad_max": 2.84
+  },
+  {
+    "id": 7,
+    "tipo": "Exynos 9820",
+    "nucleos": 8,
+    "velocidad_max": 2.73
+  },
+  {
+    "id": 8,
+    "tipo": "A14 Bionic",
+    "nucleos": 6,
+    "velocidad_max": 3.1
+  },
+  {
+    "id": 9,
+    "tipo": "Kirin 980",
+    "nucleos": 8,
+    "velocidad_max": 2.6
+  },
+  {
+    "id": 10,
+    "tipo": "Dimensity 800",
+    "nucleos": 8,
+    "velocidad_max": 2.0
+  }
+]

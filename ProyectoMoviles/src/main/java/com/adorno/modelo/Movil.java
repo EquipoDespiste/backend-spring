@@ -19,6 +19,10 @@ public class Movil {
 
 	
 	
+
+
+	
+	
 	public Movil(String modelo, String marca, int almacenamiento_gb, int ram, float peso, int camara, int bateria,
 			boolean nfc, int contador_visita, float precio_actual) {
 		super();

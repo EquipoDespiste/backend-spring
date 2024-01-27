@@ -1,6 +1,7 @@
 package com.adorno.services;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,13 @@ public class MovilService implements Services<Movil>{
 			});	
 			return true;
 	}
+	 
+	 public List<Movil> findByMarca(String marca) {
+		    return movilRepo.findAll().stream()
+		            .filter(movil -> movil.getMarca().equalsIgnoreCase(marca))
+		            .collect(Collectors.toList());
+		}
+
 	
 	
 }

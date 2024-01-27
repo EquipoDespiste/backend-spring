@@ -13,10 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.adorno.modelo.Movil;
 
-import com.adorno.repositorio.IMovilRepositorio;
-
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
-
 
 
 

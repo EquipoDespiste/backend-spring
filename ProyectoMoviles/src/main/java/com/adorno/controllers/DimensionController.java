@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("dimension")
-public class DimensionController {
+@RequestMapping("dimensiones")
+public class DimensionController implements Controller<Dimension>{
 
 	private final DimensionService dimensionService;
 
@@ -23,29 +23,30 @@ public class DimensionController {
 		super();
 		this.dimensionService = dimensionService;
 	}
-
-	@GetMapping("all")
-	public List<Dimension> dimensiones() {
+	
+	@Override
+	public List<Dimension> all() {
 		return dimensionService.findAll();
 	}
-
-	@GetMapping("busqueda/{id}")
-	public Dimension encontrarDimension(@PathVariable long id) {
-		return dimensionService.getDimensionById(id).orElse(new Dimension());
+	
+	@Override
+	public Dimension findById(@PathVariable long id) {
+		return dimensionService.getById(id).orElse(new Dimension());
 	}
-
-	@PostMapping("insertar")
-	public boolean insertar(@RequestBody Dimension dimension) {
+	
+	
+	@Override
+	public boolean insert(@RequestBody Dimension dimension) {
 		return dimensionService.add(dimension);
 	}
-
-	@PostMapping("insertar-lista")
-	public boolean insertarLista(@RequestBody List<Dimension> dimensiones) {
-		return dimensionService.insertarLista(dimensiones);
+	
+	@Override
+	public boolean insertAll(@RequestBody List<Dimension> dimensiones) {
+		return dimensionService.addAll(dimensiones);
 	}
 
-	@DeleteMapping("delete/{id}")
-	public boolean borrar(@PathVariable long id) {
+	@Override
+	public boolean delete(@PathVariable long id) {
 		return dimensionService.delete(id);
 	}
 

@@ -1,0 +1,79 @@
+[
+  {
+    
+    "alto": 150,
+    "ancho": 70,
+    "grosor": 8
+  },
+  {
+    
+    "alto": 160,
+    "ancho": 75,
+    "grosor": 9
+  },
+  {
+
+    "alto": 155,
+    "ancho": 72,
+    "grosor": 7.5
+  },
+{
+
+    "alto": 155,
+    "ancho": 68,
+    "grosor": 8.5
+  },
+  {
+
+    "alto": 165,
+    "ancho": 72,
+    "grosor": 9.2
+  },
+  {
+
+    "alto": 160,
+    "ancho": 71,
+    "grosor": 8.8
+  },
+  {
+
+    "alto": 150,
+    "ancho": 65,
+    "grosor": 8.1
+  },
+  {
+
+    "alto": 170,
+    "ancho": 78,
+    "grosor": 9.5
+  },
+  {
+
+    "alto": 158,
+    "ancho": 69,
+    "grosor": 8.3
+  },
+  {
+
+    "alto": 162,
+    "ancho": 73,
+    "grosor": 8.9
+  },
+  {
+
+    "alto": 148,
+    "ancho": 67,
+    "grosor": 8.0
+  },
+  {
+
+    "alto": 175,
+    "ancho": 80,
+    "grosor": 9.8
+  },
+  {
+    "alto": 155,
+    "ancho": 70,
+    "grosor": 8.7
+  }
+]

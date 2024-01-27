@@ -2,6 +2,7 @@ package com.adorno.controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +13,7 @@ public interface Controller<T> {
 	@GetMapping("all")
 	public List<T> all();
 	
-	@GetMapping("busqueda/{id}")
+	@GetMapping("find/{id}")
 	public T findById(@PathVariable long id);
 	
 	@PostMapping("insert")
@@ -21,7 +22,7 @@ public interface Controller<T> {
 	@PostMapping("insert-all")
 	public boolean insertAll(@RequestBody List<T> t);
 	
-	@PostMapping("delete/{id}")
+	@DeleteMapping("delete/{id}")
 	public boolean delete(@PathVariable long id);
 	
 	

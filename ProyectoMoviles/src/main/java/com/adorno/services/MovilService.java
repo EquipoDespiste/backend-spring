@@ -1,15 +1,8 @@
 package com.adorno.services;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.stereotype.Service;
 
 import com.adorno.modelo.Movil;
@@ -17,7 +10,7 @@ import com.adorno.repositorio.IMovilRepositorio;
 
 
 @Service
-public class MovilService {
+public class MovilService implements Services<Movil>{
 	@Autowired
 	IMovilRepositorio movilRepo;
 	
@@ -25,11 +18,11 @@ public class MovilService {
 		super();
 		
 	}
-	
+	@Override
 	public boolean add(Movil movil) {
 		return movilRepo.save(movil) != null;
 	}
-	
+	@Override
 	public boolean delete (long id) {
 		boolean retorno = movilRepo.findById(id).isPresent();
 		if(retorno) {
@@ -40,19 +33,19 @@ public class MovilService {
 		
 		return retorno;
 	}
-	
-	public Optional<Movil> getMovilById(long id){
+	@Override
+	public Optional<Movil> getById(long id){
 		return movilRepo.findById(id);
 	}
-
+	@Override
 	public List<Movil> findAll() {
 		return movilRepo.findAll();
 	}
 
-	
+	 @Override
 	//devuelvo true porque funciona y porque no hay otro metodo
-	public boolean insertarLista(List<Movil> insertados) {
-			insertados.stream()
+	public boolean addAll(List<Movil> moviles) {
+			moviles.stream()
 			.forEach((movil)->{
 				movilRepo.save(movil);
 			});	

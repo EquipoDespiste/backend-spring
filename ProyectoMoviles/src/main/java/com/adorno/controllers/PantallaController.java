@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("pantalla")
-public class PantallaController {
+@RequestMapping("pantallas")
+public class PantallaController implements Controller<Pantalla>{
 
 	private final PantallaService pantallaService;
 
@@ -23,29 +23,25 @@ public class PantallaController {
 		super();
 		this.pantallaService = pantallaService;
 	}
-
-	@GetMapping("all")
-	public List<Pantalla> dimensiones() {
+	
+	@Override
+	public List<Pantalla> all() {
 		return pantallaService.findAll();
 	}
-
-	@GetMapping("busqueda/{id}")
-	public Pantalla encontrarDimension(@PathVariable long id) {
-		return pantallaService.getDimensionById(id).orElse(new Pantalla());
+	@Override
+	public Pantalla findById(@PathVariable long id) {
+		return pantallaService.getById(id).orElse(new Pantalla());
 	}
-
-	@PostMapping("insertar")
-	public boolean insertar(@RequestBody Pantalla pantalla) {
+	@Override
+	public boolean insert(@RequestBody Pantalla pantalla) {
 		return pantallaService.add(pantalla);
 	}
-
-	@PostMapping("insertar-lista")
-	public boolean insertarLista (@RequestBody List<Pantalla> pantalla) {
-		return pantallaService.insertarLista(pantalla);
+	@Override
+	public boolean insertAll (@RequestBody List<Pantalla> pantalla) {
+		return pantallaService.addAll(pantalla);
 	}
-
-	@DeleteMapping("delete/{id}")
-	public boolean borrar(@PathVariable long id) {
+	@Override
+	public boolean delete(@PathVariable long id) {
 		return pantallaService.delete(id);
 	}
 

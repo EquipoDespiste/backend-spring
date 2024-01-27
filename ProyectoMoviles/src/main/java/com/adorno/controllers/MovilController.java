@@ -14,8 +14,8 @@ import com.adorno.modelo.Movil;
 import com.adorno.services.MovilService;
 
 @RestController
-@RequestMapping("movil")
-public class MovilController {
+@RequestMapping("moviles")
+public class MovilController implements Controller<Movil>{
 
 	private final MovilService movilService;
 
@@ -24,28 +24,28 @@ public class MovilController {
 		this.movilService = movilService;
 	}
 
-	@GetMapping("all")
-	public List<Movil> moviles() {
+	@Override
+	public List<Movil> all() {
 		return movilService.findAll();
 	}
 
-	@GetMapping("busqueda/{id}")
-	public Movil encontrarMovil(@PathVariable long id) {
-		return movilService.getMovilById(id).orElse(new Movil());
+	@Override
+	public Movil findById(@PathVariable long id) {
+		return movilService.getById(id).orElse(new Movil());
 	}
 
-	@PostMapping("insercion")
-	public boolean insertarMovil(@RequestBody Movil movil) {
+	@Override
+	public boolean insert(@RequestBody Movil movil) {
 		return movilService.add(movil);
 	}
 
-	@PostMapping("insertar-lista")
-	public boolean insertarLista(@RequestBody List<Movil> moviles) {
-		return movilService.insertarLista(moviles);
+	@Override
+	public boolean insertAll(@RequestBody List<Movil> moviles) {
+		return movilService.addAll(moviles);
 	}
 
-	@DeleteMapping("delete/{id}")
-	public boolean borrarMovil(@PathVariable long id) {
+	@Override
+	public boolean delete(@PathVariable long id) {
 		return movilService.delete(id);
 	}
 

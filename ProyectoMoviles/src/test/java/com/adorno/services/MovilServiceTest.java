@@ -73,5 +73,15 @@ MovilService movilservicio= new MovilService();
 		assertTrue(!movilservicio.findAll().isEmpty());
 	}
 
-
+@Test
+void testFindBydMarca() {
+	movil = new Movil("modelo1", "Marca2", 1, 2, 1f, 2, 1, false, 1, 1f);
+	listaMoviles.add(movil);
+	movilservicio.addAll(listaMoviles);
+	
+	int esperado=1;
+	int actual=movilservicio.findByMarca("Marca2").size();
+	assertTrue(movilservicio.findByMarca("Marca2")!=null);
+	assertEquals(esperado,actual);
+}
 }

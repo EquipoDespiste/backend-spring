@@ -54,9 +54,7 @@ public class MovilService implements Services<Movil>{
 	}
 	 
 	 public List<Movil> findByMarca(String marca) {
-		    return movilRepo.findAll().stream()
-		            .filter(movil -> movil.getMarca().equalsIgnoreCase(marca))
-		            .collect(Collectors.toList());
+		    return movilRepo.findByMarcaIgnoreCase(marca);
 		}
 
 	

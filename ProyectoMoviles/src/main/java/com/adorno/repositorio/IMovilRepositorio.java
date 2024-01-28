@@ -11,6 +11,6 @@ import com.adorno.modelo.Movil;
 @Repository
 public interface IMovilRepositorio extends JpaRepository<Movil, Long>{
 
-
+	public List<Movil> findByMarcaIgnoreCase(String marca);
 
 }

@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Movil {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

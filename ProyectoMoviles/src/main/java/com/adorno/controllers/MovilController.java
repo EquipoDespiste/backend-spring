@@ -48,5 +48,9 @@ public class MovilController implements Controller<Movil>{
 	public boolean delete(@PathVariable long id) {
 		return movilService.delete(id);
 	}
+	@GetMapping("find/{marca}")
+	public List<Movil> findByMarca(@PathVariable String marca) {
+		return movilService.findByMarca(marca);
+	}
 
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +23,6 @@ public class Movil {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String modelo;
-	private String marca;
 	private int almacenamiento_gb;
 	private int ram;
 	private float peso;
@@ -31,7 +31,8 @@ public class Movil {
 	private boolean nfc;
 	private int contador_visita;
 	private float precio_actual;
-	
+	@ManyToOne
+	private Marca marca;
 	@ManyToOne
 	private Pantalla pantalla;
 	@ManyToOne
@@ -39,7 +40,7 @@ public class Movil {
 	@ManyToOne
 	private Procesador procesador;
 	
-	public Movil(String modelo, String marca, int almacenamiento_gb, int ram, float peso, int camara, int bateria,
+	public Movil(String modelo, Marca marca, int almacenamiento_gb, int ram, float peso, int camara, int bateria,
 			boolean nfc, int contador_visita, float precio_actual) {
 		super();
 		this.modelo = modelo;

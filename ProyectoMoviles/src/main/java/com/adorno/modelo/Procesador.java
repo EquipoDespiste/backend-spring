@@ -16,6 +16,12 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Procesador {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String tipo;
+	private int nucleos;
+	private float velocidad_max;
 	
 	public Procesador(String tipo, int nucleos, float velocidad_max) {
 		super();
@@ -23,10 +29,5 @@ public class Procesador {
 		this.nucleos = nucleos;
 		this.velocidad_max = velocidad_max;
 	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String tipo;
-	private int nucleos;
-	private float velocidad_max;
+
 }

@@ -16,14 +16,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Dimension {
 
-	
-	
-	public Dimension(float alto, float ancho, float grosor) {
-		super();
-		this.alto = alto;
-		this.ancho = ancho;
-		this.grosor = grosor;
-	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -31,8 +23,12 @@ public class Dimension {
 	private float ancho;
 	private float grosor;
 	
-
-	
+	public Dimension(float alto, float ancho, float grosor) {
+		super();
+		this.alto = alto;
+		this.ancho = ancho;
+		this.grosor = grosor;
+	}	
 	
 
 }

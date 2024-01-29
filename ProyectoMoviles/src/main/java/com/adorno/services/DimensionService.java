@@ -25,7 +25,7 @@ public class DimensionService implements Services<Dimension>{
 	}
 	@Override
 	public boolean delete (long id) {
-		boolean retorno = dimensionRepo.findById(null).isPresent();
+		boolean retorno = dimensionRepo.findById(id).isPresent();
 		if(retorno) {
 			dimensionRepo.findById(id).ifPresent((dimension)->{
 				dimensionRepo.delete(dimension);

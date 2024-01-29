@@ -3,6 +3,7 @@ package com.adorno.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.adorno.modelo.Marca;
@@ -11,6 +12,7 @@ import com.adorno.repositorio.IMarcaRepositorio;
 @Service
 public class MarcaService implements Services<Marca> {
 
+	@Autowired
 	private IMarcaRepositorio marcaRepo;
 	
 	public MarcaService(IMarcaRepositorio marcaRepo) {

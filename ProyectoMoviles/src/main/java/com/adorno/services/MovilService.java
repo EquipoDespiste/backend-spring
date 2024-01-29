@@ -12,11 +12,12 @@ import com.adorno.repositorio.IMovilRepositorio;
 
 @Service
 public class MovilService implements Services<Movil>{
-	@Autowired
-	IMovilRepositorio movilRepo;
+
+	private final IMovilRepositorio movilRepo;
 	
-	public MovilService() {
+	public MovilService(IMovilRepositorio movilRepo) {
 		super();
+		this.movilRepo=movilRepo;
 		
 	}
 	@Override

@@ -12,11 +12,12 @@ import com.adorno.repositorio.IProcesadorRepositorio;
 @Service
 public class ProcesadorService implements Services<Procesador>{
 
-	@Autowired
-	IProcesadorRepositorio procesadorRepo;
 	
-	public ProcesadorService() {
+	private final IProcesadorRepositorio procesadorRepo;
+	
+	public ProcesadorService(IProcesadorRepositorio procesadorRepo) {
 		super();
+		this.procesadorRepo=procesadorRepo;
 	}
 
 	@Override

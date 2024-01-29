@@ -10,20 +10,16 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.adorno.modelo.Movil;
-
-
-
 
 @SpringBootTest
 class MovilServiceTest {
 
-@Autowired
-MovilService movilservicio= new MovilService();
-
-
-
+	@MockBean
+	
+	MovilService movilservicio;
 
 	private List<Movil> listaMoviles = new ArrayList<>();
 
@@ -32,12 +28,12 @@ MovilService movilservicio= new MovilService();
 	@BeforeEach
 	void before() {
 		listaMoviles.add(new Movil("modelo1", "Marca1", 1, 2, 1f, 2, 1, false, 1, 1f));
-		movil = new Movil("modelo1", "Marca1", 1, 2, 1f, 2, 1, false, 1, 1f);
+	
 	}
 
 	@Test
 	void testAdd() {
-		 movil = Mockito.mock(Movil.class);
+		movil = Mockito.mock(Movil.class);
 		assertTrue(movilservicio.add(movil));
 	}
 
@@ -58,7 +54,7 @@ MovilService movilservicio= new MovilService();
 
 	@Test
 	void testFindAll() {
-		 movil = Mockito.mock(Movil.class);
+		movil = Mockito.mock(Movil.class);
 		movilservicio.add(movil);
 		assertTrue(!movilservicio.findAll().isEmpty());
 	}
@@ -73,15 +69,15 @@ MovilService movilservicio= new MovilService();
 		assertTrue(!movilservicio.findAll().isEmpty());
 	}
 
-@Test
-void testFindBydMarca() {
-	movil = new Movil("modelo1", "Marca2", 1, 2, 1f, 2, 1, false, 1, 1f);
-	listaMoviles.add(movil);
-	movilservicio.addAll(listaMoviles);
-	
-	int esperado=1;
-	int actual=movilservicio.findByMarca("Marca2").size();
-	assertTrue(movilservicio.findByMarca("Marca2")!=null);
-	assertEquals(esperado,actual);
-}
+	@Test
+	void testFindBydMarca() {
+		movil = new Movil("modelo1", "Marca2", 1, 2, 1f, 2, 1, false, 1, 1f);
+		listaMoviles.add(movil);
+		movilservicio.addAll(listaMoviles);
+
+		int esperado = 1;
+		int actual = movilservicio.findByMarca("Marca2").size();
+		assertTrue(movilservicio.findByMarca("Marca2") != null);
+		assertEquals(esperado, actual);
+	}
 }

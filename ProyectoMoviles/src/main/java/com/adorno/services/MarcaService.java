@@ -2,6 +2,7 @@ package com.adorno.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import com.adorno.modelo.Marca;
 import com.adorno.repositorio.IMarcaRepositorio;
 
 @Service
-public class MarcaService implements Services<Marca> {
+public class MarcaService implements Services<String> {
 
 	@Autowired
 	private IMarcaRepositorio marcaRepo;
@@ -25,8 +26,8 @@ public class MarcaService implements Services<Marca> {
 	}
 
 	@Override
-	public boolean add(Marca t) {
-		return this.marcaRepo.save(t) != null;
+	public boolean add(String t) {
+		return this.marcaRepo.save(new Marca(t)) != null;
 	}
 
 	@Override
@@ -42,21 +43,31 @@ public class MarcaService implements Services<Marca> {
 	}
 
 	@Override
-	public Optional<Marca> getById(long id) {
-		return this.marcaRepo.findById(id);
+	public Optional<String> getById(long id) {
+		Optional<String> nombreMarca=Optional.of("");
+		Optional<Marca> marca = this.marcaRepo.findById(id);
+		if(marca.isPresent()) {
+			nombreMarca = Optional.of(marca.get().getNombre());	
+		}
+		return nombreMarca;
 	}
 
 	@Override
-	public List<Marca> findAll() {
-		return this.marcaRepo.findAll();
+	public List<String> findAll() {
+		return this.marcaRepo.findAll().stream()
+				.map(marca-> marca.getNombre())
+				.collect(Collectors.toList());
 	}
 
 	@Override
-	public boolean addAll(List<Marca> t) {
+	public boolean addAll(List<String> t) {
 //		t.forEach(marca->{
 //			this.marcaRepo.save(marca);
 //		});
-		this.marcaRepo.saveAll(t);
+		
+		this.marcaRepo.saveAll(t.stream()
+								.map(nombre -> new Marca(nombre))
+								.collect(Collectors.toList()));
 		return false;
 	}
 

@@ -50,8 +50,9 @@ public class MovilController implements Controller<Movil>{
 		return movilService.delete(id);
 	}
 	
+	
 	@GetMapping("find/{marca}")
-	public List<Movil> findByMarca(@PathVariable long marca) {
+	public List<Movil> findByMarca(@PathVariable String marca) {
 		
 		return movilService.findByMarca(marca);
 	}

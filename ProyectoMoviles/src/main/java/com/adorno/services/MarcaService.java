@@ -60,4 +60,12 @@ public class MarcaService implements Services<Marca> {
 		return false;
 	}
 
+	public Marca getMarcaByNombre(String marca) {
+		
+		return marcaRepo.findAll().stream()
+				.filter((m)->{
+					return m.getNombre().equalsIgnoreCase(marca);
+				}).findFirst().orElse(new Marca("marca"));
+	}
+
 }

@@ -12,11 +12,12 @@ import com.adorno.repositorio.IPantallaRepositorio;
 @Service
 public class PantallaService implements Services<Pantalla>{
 	
-	@Autowired
-	IPantallaRepositorio pantallaRepo;
 	
-	public PantallaService() {
+	private final IPantallaRepositorio pantallaRepo;
+	
+	public PantallaService(IPantallaRepositorio pantallaRepo) {
 		super();
+		this.pantallaRepo=pantallaRepo;
 	}
 	@Override
 	public boolean add(Pantalla pantalla) {

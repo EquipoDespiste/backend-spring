@@ -12,11 +12,12 @@ import com.adorno.repositorio.IDimensionRepositorio;
 @Service
 public class DimensionService implements Services<Dimension>{
 	
-	@Autowired
-	IDimensionRepositorio dimensionRepo;
+
+	private final IDimensionRepositorio dimensionRepo;
 	
-	public DimensionService() {
+	public DimensionService(IDimensionRepositorio dimesionRepo) {
 		super();
+		this.dimensionRepo=dimesionRepo;
 	}
 	@Override
 	public boolean add(Dimension dimension) {

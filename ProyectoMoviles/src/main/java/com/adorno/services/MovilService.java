@@ -14,14 +14,15 @@ import com.adorno.repositorio.IMarcaRepositorio;
 import com.adorno.repositorio.IMovilRepositorio;
 
 @Service
-public class MovilService implements Services<Movil> {
-	@Autowired
-	private IMovilRepositorio movilRepo;
-	@Autowired
-	private MarcaService marcaService;
 
-	public MovilService() {
+public class MovilService implements Services<Movil>{
+
+	private final IMovilRepositorio movilRepo;
+	
+	public MovilService(IMovilRepositorio movilRepo) {
 		super();
+		this.movilRepo=movilRepo;
+		
 
 	}
 

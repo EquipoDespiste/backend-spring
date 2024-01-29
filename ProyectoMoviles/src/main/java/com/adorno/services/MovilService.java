@@ -1,4 +1,5 @@
 package com.adorno.services;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,59 +13,57 @@ import com.adorno.modelo.Movil;
 import com.adorno.repositorio.IMarcaRepositorio;
 import com.adorno.repositorio.IMovilRepositorio;
 
-
 @Service
-public class MovilService implements Services<Movil>{
+public class MovilService implements Services<Movil> {
 	@Autowired
-	IMovilRepositorio movilRepo;
-	
+	private IMovilRepositorio movilRepo;
 	@Autowired
-	IMarcaRepositorio marcaRepo;
-	
+	private MarcaService marcaService;
+
 	public MovilService() {
 		super();
-		
+
 	}
+
 	@Override
 	public boolean add(Movil movil) {
 		return movilRepo.save(movil) != null;
 	}
+
 	@Override
-	public boolean delete (long id) {
+	public boolean delete(long id) {
 		boolean retorno = movilRepo.findById(id).isPresent();
-		if(retorno) {
-			movilRepo.findById(id).ifPresent((movil)->{
+		if (retorno) {
+			movilRepo.findById(id).ifPresent((movil) -> {
 				movilRepo.delete(movil);
 			});
 		}
-		
+
 		return retorno;
 	}
+
 	@Override
-	public Optional<Movil> getById(long id){
+	public Optional<Movil> getById(long id) {
 		return movilRepo.findById(id);
 	}
+
 	@Override
 	public List<Movil> findAll() {
 		return movilRepo.findAll();
 	}
 
-	 @Override
-	//devuelvo true porque funciona y porque no hay otro metodo
+	@Override
+	// devuelvo true porque funciona y porque no hay otro metodo
 	public boolean addAll(List<Movil> moviles) {
-			moviles.stream()
-			.forEach((movil)->{
-				movilRepo.save(movil);
-			});	
-			return true;
+		moviles.stream().forEach((movil) -> {
+			movilRepo.save(movil);
+		});
+		return true;
 	}
-	 
-	 public List<Movil> findByMarca(long marca) {
-		Optional<Marca> m=marcaRepo.findById(marca);
-		if(m.isPresent()) {
-		    return movilRepo.findByMarcaIgnoreCase(m.get());
-		}
-	 return new ArrayList<Movil>();
-	}	
+
+	public List<Movil> findByMarca(String marca) { 
+		return movilRepo.findByMarcaIgnoreCase(marcaService.getMarcaByNombre(marca));
+
+	}
 
 }

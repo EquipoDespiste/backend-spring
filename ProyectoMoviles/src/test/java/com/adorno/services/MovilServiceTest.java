@@ -23,8 +23,8 @@ class MovilServiceTest {
 
 	@BeforeEach
 	void before() {
-		listaMoviles.add(new Movil("modelo1", 1, 2, 1f, 2, 1, false, 1, 1f));
-		movil= new Movil("modelo1", 1, 2, 1f, 2, 1, false, 1, 1f);
+		listaMoviles.add(new Movil("modelo1",  1, 2, 1f, 2, 1, false, 1, 1f));
+		movil= new Movil("modelo1",  1, 2, 1f, 2, 1, false, 1, 1f);
 	}
 
 	@Test
@@ -68,7 +68,7 @@ class MovilServiceTest {
 
 	@Test
 	void testFindBydMarca() {
-		movil = new Movil("modelo1", 1, 2, 1f, 2, 1, false, 1, 1f);
+		movil = new Movil("modelo1",  1, 2, 1f, 2, 1, false, 1, 1f);
 		listaMoviles.add(movil);
 		movilservicio.addAll(listaMoviles);
 

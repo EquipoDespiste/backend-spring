@@ -18,11 +18,12 @@ import com.adorno.repositorio.IMovilRepositorio;
 public class MovilService implements Services<Movil>{
 
 	private final IMovilRepositorio movilRepo;
+	private final IMarcaRepositorio marcaRepo;
 	
-	public MovilService(IMovilRepositorio movilRepo) {
+	public MovilService(IMovilRepositorio movilRepo, IMarcaRepositorio marcaRepo) {
 		super();
 		this.movilRepo=movilRepo;
-		
+		this.marcaRepo=marcaRepo;
 
 	}
 
@@ -63,7 +64,7 @@ public class MovilService implements Services<Movil>{
 	}
 
 	public List<Movil> findByMarca(String marca) { 
-		return null;
+		return movilRepo.findByMarca(marcaRepo.findByNombreIgnoreCase(marca));
 
 	}
 

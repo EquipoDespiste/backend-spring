@@ -7,5 +7,5 @@ import com.adorno.modelo.Marca;
 
 @Repository
 public interface IMarcaRepositorio extends JpaRepository<Marca, Long>{
-	public Marca findByNombre(String nombre);
+	public Marca findByNombreIgnoreCase(String nombre);
 }

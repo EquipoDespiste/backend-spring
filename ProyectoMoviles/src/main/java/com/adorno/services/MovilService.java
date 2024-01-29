@@ -64,7 +64,7 @@ public class MovilService implements Services<Movil>{
 	}
 
 	public List<Movil> findByMarca(String marca) { 
-		return movilRepo.findByMarcaIgnoreCase(marcaRepo.findByNombre(marca));
+		return movilRepo.findByMarca(marcaRepo.findByNombreIgnoreCase(marca));
 
 	}
 

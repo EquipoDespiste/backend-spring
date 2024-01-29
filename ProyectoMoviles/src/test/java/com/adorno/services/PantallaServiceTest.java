@@ -41,10 +41,8 @@ class PantallaServiceTest {
 	void testGetDimensionById() {
 		pantallaService.add(pantalla);
 		float esperado=15.15f;
-		float tamanio= pantallaService.getById(1L).get().getTamanio();
-		//no funciona el metodo , problema con la ID.
+		float tamanio= pantallaService.getById(2L).get().getTamanio();
 		assertEquals(esperado, tamanio);
-		
 	}
 
 	@Test

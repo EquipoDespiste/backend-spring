@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.adorno.modelo.Marca;
 import com.adorno.modelo.Movil;
+import com.adorno.repositorio.IMarcaRepositorio;
 import com.adorno.repositorio.IMovilRepositorio;
 
 
@@ -14,6 +16,9 @@ import com.adorno.repositorio.IMovilRepositorio;
 public class MovilService implements Services<Movil>{
 	@Autowired
 	IMovilRepositorio movilRepo;
+	
+	@Autowired
+	IMarcaRepositorio marcaRepo;
 	
 	public MovilService() {
 		super();
@@ -53,9 +58,13 @@ public class MovilService implements Services<Movil>{
 			return true;
 	}
 	 
-	 public List<Movil> findByMarca(String marca) {
-		    return movilRepo.findByMarcaIgnoreCase(marca);
+	 public List<Movil> findByMarca(long marca) {
+		Optional<Marca> m=marcaRepo.findById(marca);
+		if(m.isPresent()) {
+		    return movilRepo.findByMarcaIgnoreCase(m.get());
 		}
+	 return new ArrayList<Movil>();
+	}	
 
 	
 	

@@ -2,33 +2,59 @@ package com.adorno.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.adorno.modelo.Pantalla;
+
+@SpringBootTest
 class PantallaServiceTest {
 
+	@Autowired
+	PantallaService pantallaService;
+	
+	List<Pantalla>listaPantalla=new ArrayList<>();
+	private Pantalla pantalla;
+	
+	@BeforeEach
+	void before() {
+		pantalla=new Pantalla(1L,15.15f, "tecnologia1");
+		
+	}
+	
 	@Test
 	void testAdd() {
-		fail("Not yet implemented");
+		assertTrue(pantallaService.add(pantalla));
 	}
 
 	@Test
 	void testDelete() {
-		fail("Not yet implemented");
+		assertTrue(pantallaService.delete(1L));
 	}
 
 	@Test
 	void testGetDimensionById() {
-		fail("Not yet implemented");
+		pantallaService.add(pantalla);
+		float esperado=15.15f;
+		float tamanio= pantallaService.getById(1L).get().getTamanio();
+		//no funciona el metodo , problema con la ID.
+		assertEquals(esperado, tamanio);
+		
 	}
 
 	@Test
 	void testFindAll() {
-		fail("Not yet implemented");
+		assertTrue(!pantallaService.findAll().isEmpty());
 	}
 
 	@Test
 	void testInsertarLista() {
-		fail("Not yet implemented");
+		assertTrue(pantallaService.addAll(listaPantalla));
 	}
 
 }

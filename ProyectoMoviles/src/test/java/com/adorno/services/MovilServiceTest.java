@@ -10,15 +10,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-
 import com.adorno.modelo.Movil;
 
 @SpringBootTest
 class MovilServiceTest {
 
-	@MockBean
-	
+	@Autowired
 	MovilService movilservicio;
 
 	private List<Movil> listaMoviles = new ArrayList<>();
@@ -28,25 +25,25 @@ class MovilServiceTest {
 	@BeforeEach
 	void before() {
 		listaMoviles.add(new Movil("modelo1", "Marca1", 1, 2, 1f, 2, 1, false, 1, 1f));
-	
+		movil= new Movil("modelo1", "Marca1", 1, 2, 1f, 2, 1, false, 1, 1f);
 	}
 
 	@Test
 	void testAdd() {
-		movil = Mockito.mock(Movil.class);
+		
 		assertTrue(movilservicio.add(movil));
 	}
 
 	@Test
 	void testDelete() {
-
+		
 		movilservicio.add(movil);
 		assertTrue(movilservicio.delete(1L));
 	}
 
 	@Test
 	void testGetMovilById() {
-
+		
 		movilservicio.add(movil);
 		assertTrue(movilservicio.getById(1L).isPresent());
 
@@ -54,13 +51,14 @@ class MovilServiceTest {
 
 	@Test
 	void testFindAll() {
-		movil = Mockito.mock(Movil.class);
+
 		movilservicio.add(movil);
 		assertTrue(!movilservicio.findAll().isEmpty());
 	}
 
 	@Test
 	void testInsertarLista() {
+	
 		movilservicio.addAll(listaMoviles);
 		listaMoviles.forEach((movil) -> {
 			System.out.println(movil.getMarca());

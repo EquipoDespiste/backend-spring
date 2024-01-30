@@ -53,7 +53,9 @@ public class PantallaService implements Services<Pantalla>{
 	}
 	
 	
-	
+	public List<Pantalla> findByTecnologiaPantalla(String tecnlogia){
+		return pantallaRepo.findByTecnologia(tecnlogia);
+	}
 	
 
 }

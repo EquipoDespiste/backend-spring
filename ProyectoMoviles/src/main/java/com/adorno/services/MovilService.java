@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.adorno.modelo.Marca;
 import com.adorno.modelo.Movil;
+import com.adorno.modelo.MovilRequest;
 import com.adorno.modelo.dto.MovilResumenDTO;
 import com.adorno.modelo.mapper.MovilResumenDTOMapper;
 import com.adorno.repositorio.IMarcaRepositorio;
@@ -83,10 +83,32 @@ public class MovilService implements Services<Movil> {
 		}).collect(Collectors.toList());
 	}
 
-	public List<MovilResumenDTO> getByMarcaResumen(String marca) {
-		return findByMarca(marca).stream()
-				.map((movil) -> {
-			return movilResumenDTOMapper.mapToDTO(movil);
-			}).collect(Collectors.toList());
+	public List<MovilResumenDTO> mapListaFiltrados(List<Movil> filtrados) {
+		List<MovilResumenDTO> filtradosResumen = new ArrayList<>();
+		filtrados.forEach((movil) -> {
+			filtradosResumen.add(movilResumenDTOMapper.mapToDTO(movil));
+		});
+
+		return filtradosResumen;
+
+	}
+
+	public List<MovilResumenDTO> getByMarcaResumen(MovilRequest request) {
+
+		Marca marca = this.marcaRepo.findByNombreIgnoreCase(request.getMarca());
+
+		List<Movil> moviles = this.movilRepo.findByMarca(marca);
+
+		moviles.stream().filter(m -> {
+			return m.getPrecio_actual() >= request.getPrecioMin() && m.getPrecio_actual() <= request.getPrecioMax();
+		});
+
+		return null;
+	}
+
+	public List<MovilResumenDTO> filtracion(MovilRequest request) {
+		List<Movil> movilesMarca = movilRepo.findByMarca(marcaRepo.findByNombreIgnoreCase(request.getMarca()));
+
+		return mapListaFiltrados(movilesMarca);
 	}
 }

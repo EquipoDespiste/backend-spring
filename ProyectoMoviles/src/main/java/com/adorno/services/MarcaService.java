@@ -13,16 +13,11 @@ import com.adorno.repositorio.IMarcaRepositorio;
 @Service
 public class MarcaService implements Services<String> {
 
-	@Autowired
-	private IMarcaRepositorio marcaRepo;
+	private final IMarcaRepositorio marcaRepo;
 	
 	public MarcaService(IMarcaRepositorio marcaRepo) {
 		super();
 		this.marcaRepo = marcaRepo;
-	}
-
-	public MarcaService() {
-		super();
 	}
 
 	@Override

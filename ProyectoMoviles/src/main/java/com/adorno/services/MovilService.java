@@ -17,17 +17,18 @@ import com.adorno.repositorio.IMovilRepositorio;
 
 @Service
 
-public class MovilService implements Services<Movil>{
+public class MovilService implements Services<Movil> {
 
 	private final IMovilRepositorio movilRepo;
 	private final IMarcaRepositorio marcaRepo;
 	private final MovilResumenDTOMapper movilResumenDTOMapper;
-	
-	public MovilService(IMovilRepositorio movilRepo, IMarcaRepositorio marcaRepo, MovilResumenDTOMapper movilResumenDTOMapper) {
+
+	public MovilService(IMovilRepositorio movilRepo, IMarcaRepositorio marcaRepo,
+			MovilResumenDTOMapper movilResumenDTOMapper) {
 		super();
-		this.movilRepo=movilRepo;
-		this.marcaRepo=marcaRepo;
-		this.movilResumenDTOMapper= movilResumenDTOMapper;
+		this.movilRepo = movilRepo;
+		this.marcaRepo = marcaRepo;
+		this.movilResumenDTOMapper = movilResumenDTOMapper;
 
 	}
 
@@ -67,17 +68,24 @@ public class MovilService implements Services<Movil>{
 		return true;
 	}
 
-	public List<Movil> findByMarca(String marca) { 
+	public List<Movil> findByMarca(String marca) {
 		return movilRepo.findByMarca(marcaRepo.findByNombreIgnoreCase(marca));
 
 	}
-	
-	public MovilResumenDTO getByIdResumen(long id){
+
+	public MovilResumenDTO getByIdResumen(long id) {
 		return movilResumenDTOMapper.mapToDTO(getById(id).get());
 	}
-	
-	public List<MovilResumenDTO> findAllResumen(){
-		return findAll().stream().map((movil)->{
+
+	public List<MovilResumenDTO> findAllResumen() {
+		return findAll().stream().map((movil) -> {
+			return movilResumenDTOMapper.mapToDTO(movil);
+		}).collect(Collectors.toList());
+	}
+
+	public List<MovilResumenDTO> getByMarcaResumen(String marca) {
+		return findByMarca(marca).stream()
+				.map((movil) -> {
 			return movilResumenDTOMapper.mapToDTO(movil);
 			}).collect(Collectors.toList());
 	}

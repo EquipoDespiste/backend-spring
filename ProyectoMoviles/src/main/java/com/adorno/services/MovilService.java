@@ -76,5 +76,9 @@ public class MovilService implements Services<Movil>{
 		return movilResumenDTOMapper.mapToDTO(getById(id).get());
 	}
 	
-
+	public List<MovilResumenDTO> findAllResumen(){
+		return findAll().stream().map((movil)->{
+			return movilResumenDTOMapper.mapToDTO(movil);
+			}).collect(Collectors.toList());
+	}
 }

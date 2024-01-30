@@ -108,6 +108,7 @@ public class Movil {
 		this.procesador = procesador;
 	}
 
-	
-	
+	public String getTecnologiaPantalla() {
+		return pantalla.getTecnologia();
+	}
 }

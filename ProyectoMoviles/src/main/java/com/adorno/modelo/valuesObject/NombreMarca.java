@@ -5,7 +5,7 @@ private final String nombre;
 
 public NombreMarca(String nombre) {
 	if( !validarLongitudNombre(nombre)) {
-		throw new IllegalArgumentException("El nombre no cumple con la longitud de 60 caracteres o tiene un numero "+nombre);
+		throw new IllegalArgumentException("El nombre no cumple con la longitud de 60 caracteres  "+nombre);
 	}
 	this.nombre = nombre;
 }

@@ -6,6 +6,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,14 +27,27 @@ public class Movil {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Min(value=1)
+	@NotNull
 	private Long id;
+	@NotBlank
 	private String modelo;
+	@NotEmpty
+	@Min(value=1)
 	private int almacenamiento_gb;
+	@NotEmpty
+	@Min(value=1)
 	private int ram;
+	@NotEmpty
+	@Positive
 	private float peso;
+	@NotEmpty
 	private int camara;
+	@NotEmpty
 	private int bateria;
+	@NotNull
 	private boolean nfc;
+	@Positive
 	private int contador_visita;
 	private float precio_actual;
 	@ManyToOne

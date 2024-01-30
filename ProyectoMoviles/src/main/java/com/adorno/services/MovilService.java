@@ -23,7 +23,6 @@ public class MovilService implements Services<Movil> {
 	private final IMarcaRepositorio marcaRepo;
 	private final MovilResumenDTOMapper movilResumenDTOMapper;
 
-
 	public MovilService(IMovilRepositorio movilRepo, IMarcaRepositorio marcaRepo,
 			MovilResumenDTOMapper movilResumenDTOMapper) {
 		super();
@@ -99,27 +98,19 @@ public class MovilService implements Services<Movil> {
 
 		List<Movil> moviles = this.movilRepo.findByMarca(marca);
 
-		moviles.stream()
-		.filter(m -> {
+		moviles.stream().filter(m -> {
 			return m.getPrecio_actual() >= request.getPrecioMin() && m.getPrecio_actual() <= request.getPrecioMax();
-		})
-		.filter((movil)->{
-			return movil.getRam()>= request.getRamMin() && movil.getRam()<=request.getRamMax();
-					
-		})
-		.filter((movil)->{
-			return movil.isNfc()==request.isNfc();
-		})
-		.filter((movil)->{
+		}).filter((movil) -> {
+			return movil.getRam() >= request.getRamMin() && movil.getRam() <= request.getRamMax();
+		}).filter((movil) -> {
+			return movil.isNfc() == request.isNfc();
+		}).filter((movil) -> {
 			return movil.getTecnologiaPantalla().equals(request.getTecnologiaPantalla());
-		})
-		;
+		});
 
 		return null;
 	}
 
-	
-	
 	public List<MovilResumenDTO> filtracion(MovilRequest request) {
 		List<Movil> movilesMarca = movilRepo.findByMarca(marcaRepo.findByNombreIgnoreCase(request.getMarca()));
 		return mapListaFiltrados(movilesMarca);

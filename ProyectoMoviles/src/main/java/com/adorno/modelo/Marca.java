@@ -15,7 +15,7 @@ public class Marca {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Min(value=1)
-	@NotNull
+	
 	private Long id;
 	
 	@NotBlank

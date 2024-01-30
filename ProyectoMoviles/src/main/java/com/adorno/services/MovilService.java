@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.adorno.modelo.Marca;
 import com.adorno.modelo.Movil;
+import com.adorno.modelo.dto.MovilResumenDTO;
+import com.adorno.modelo.mapper.MovilResumenDTOMapper;
 import com.adorno.repositorio.IMarcaRepositorio;
 import com.adorno.repositorio.IMovilRepositorio;
 
@@ -19,11 +21,13 @@ public class MovilService implements Services<Movil>{
 
 	private final IMovilRepositorio movilRepo;
 	private final IMarcaRepositorio marcaRepo;
+	private final MovilResumenDTOMapper movilResumenDTOMapper;
 	
-	public MovilService(IMovilRepositorio movilRepo, IMarcaRepositorio marcaRepo) {
+	public MovilService(IMovilRepositorio movilRepo, IMarcaRepositorio marcaRepo, MovilResumenDTOMapper movilResumenDTOMapper) {
 		super();
 		this.movilRepo=movilRepo;
 		this.marcaRepo=marcaRepo;
+		this.movilResumenDTOMapper= movilResumenDTOMapper;
 
 	}
 
@@ -67,5 +71,10 @@ public class MovilService implements Services<Movil>{
 		return movilRepo.findByMarca(marcaRepo.findByNombreIgnoreCase(marca));
 
 	}
+	
+	public MovilResumenDTO getByIdResumen(long id){
+		return movilResumenDTOMapper.mapToDTO(getById(id).get());
+	}
+	
 
 }

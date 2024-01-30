@@ -19,6 +19,16 @@ public class MovilResumenDTO {
 	private int almacenamiento_gb;
 	private int ram;
 	private float precio;
+	public MovilResumenDTO(String modelo, String marca, int nucleosProcesador, int almacenamiento_gb, int ram,
+			float precio) {
+		super();
+		this.modelo = modelo;
+		this.marca = marca;
+		this.nucleosProcesador = nucleosProcesador;
+		this.almacenamiento_gb = almacenamiento_gb;
+		this.ram = ram;
+		this.precio = precio;
+	}
 	
 	
 	

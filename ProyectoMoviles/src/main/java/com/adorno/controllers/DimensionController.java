@@ -1,7 +1,10 @@
 package com.adorno.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("dimensiones")
-public class DimensionController implements Controller<Dimension>{
+public class DimensionController {
 
 	private final DimensionService dimensionService;
 
@@ -24,30 +27,29 @@ public class DimensionController implements Controller<Dimension>{
 		this.dimensionService = dimensionService;
 	}
 	
-	@Override
-	public List<Dimension> all() {
-		return dimensionService.findAll();
+	@GetMapping("/all")
+	public ResponseEntity<List<Dimension>> all() {
+		return Optional.of(new ResponseEntity<List<Dimension>>(dimensionService.findAll(),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 	}
 	
-	@Override
-	public Dimension findById(@PathVariable long id) {
-		return dimensionService.getById(id).orElse(new Dimension());
+	@GetMapping("/find/{id}")
+	public ResponseEntity<Dimension> findById(@PathVariable long id) {
+		return Optional.of(new ResponseEntity<Dimension>(dimensionService.getById(id).get(), HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 	
-	
-	@Override
-	public boolean insert(@RequestBody Dimension dimension) {
-		return dimensionService.add(dimension);
+	@PostMapping("/insertar")
+	public ResponseEntity<Boolean> insert(@RequestBody Dimension dimension) {
+		return Optional.of(new ResponseEntity<Boolean>(dimensionService.add(dimension),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.UNAUTHORIZED));
 	}
 	
-	@Override
-	public boolean insertAll(@RequestBody List<Dimension> dimensiones) {
-		return dimensionService.addAll(dimensiones);
+	@PostMapping("/insertar-lista")
+	public ResponseEntity<Boolean> insertAll(@RequestBody List<Dimension> dimensiones) {
+		return Optional.of(new ResponseEntity<Boolean>(dimensionService.addAll(dimensiones),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 	}
 
-	@Override
-	public boolean delete(@PathVariable long id) {
-		return dimensionService.delete(id);
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Boolean> delete(@PathVariable long id) {
+		return Optional.of(new ResponseEntity<Boolean>(dimensionService.delete(id),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 	}
 
 }

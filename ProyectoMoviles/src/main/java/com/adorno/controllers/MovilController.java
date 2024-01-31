@@ -35,14 +35,13 @@ public class MovilController {
 
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Movil> findById(@PathVariable long id) {
-		//return movilService.getById(id).orElse(new Movil());
 		
 		return Optional.of(new ResponseEntity<Movil>(movilService.getById(id).get(), HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	@PostMapping("/insercion")
 	public ResponseEntity<Boolean> insert(@RequestBody Movil movil) {
-		//return movilService.add(movil);
+		
 		
 		return Optional.of(new ResponseEntity<Boolean>(movilService.add(movil),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.UNAUTHORIZED));
 		
@@ -50,14 +49,14 @@ public class MovilController {
 
 	@PostMapping("/insertar-lista")
 	public ResponseEntity<Boolean> insertAll(@RequestBody List<Movil> moviles) {
-		//return movilService.addAll(moviles);
+		
 		return Optional.of(new ResponseEntity<Boolean>(movilService.addAll(moviles),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 	
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Boolean> delete(@PathVariable long id) {
-		//return movilService.delete(id);
+		
 		return Optional.of(new ResponseEntity<Boolean>(movilService.delete(id),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 		
 	}
@@ -66,7 +65,6 @@ public class MovilController {
 	@GetMapping("find/{marca}")
 	public ResponseEntity<List<Movil>> findByMarca(@PathVariable String marca) {
 		
-		//return movilService.findByMarca(marca);
 		return Optional.of(new ResponseEntity<List<Movil>>(movilService.findByMarca(marca),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 		
 		

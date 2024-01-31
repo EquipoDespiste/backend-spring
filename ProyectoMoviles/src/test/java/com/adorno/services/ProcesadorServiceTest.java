@@ -18,7 +18,7 @@ class ProcesadorServiceTest {
 	
 	@Test
 	void testAdd() {
-		Procesador procesador=new Procesador("PGA",12,2.1f);
+		Procesador procesador=new Procesador("PGA-SnapDragon X3",12,2.1f);
 		assertTrue(service.add(procesador));
 	}
 
@@ -44,9 +44,9 @@ class ProcesadorServiceTest {
 	@Test
 	void testAddAll() {
 		List<Procesador>lista=new ArrayList<>();
-		lista.add(new Procesador("PGA",12,2.1f));
-		lista.add(new Procesador("AvA",1,2.1f));
-		lista.add(new Procesador("PFA",2,1.1f));
+		lista.add(new Procesador("PGA-SnapDragon X3",12,2.1f));
+		lista.add(new Procesador("AvA-SnapDragon X3",1,2.1f));
+		lista.add(new Procesador("PFA-SnapDragon X3",2,1.1f));
 		
 		assertTrue(service.addAll(lista));
 		

@@ -12,5 +12,10 @@ public interface IMovilRepositorio extends JpaRepository<Movil, Long>{
 
 	public List<Movil> findByMarca(Marca marca);
 
+
+
+	public List<Movil> findByNfc(boolean nfc);
+	
+
 	
 }

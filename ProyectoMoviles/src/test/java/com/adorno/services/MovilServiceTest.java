@@ -1,6 +1,7 @@
 package com.adorno.services;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,20 +10,26 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.adorno.modelo.Marca;
 import com.adorno.modelo.Movil;
+import com.adorno.repositorio.IMarcaRepositorio;
 
 @SpringBootTest
 class MovilServiceTest {
 
 	@Autowired
 	MovilService movilservicio;
+	@Autowired
+	IMarcaRepositorio marcaRepo;
 
-	private List<Movil> listaMoviles = new ArrayList<>();
+	private List<Movil> listaMoviles = new ArrayList<>() ;
 
 	private Movil movil;
 
 	@BeforeEach
 	void before() {
+		
 		listaMoviles.add(new Movil("modelo1",  1, 2, 1f, 2, 1, false, 1, 1f));
 		movil= new Movil("modelo1",  1, 2, 1f, 2, 1, false, 1, 1f);
 	}
@@ -68,13 +75,22 @@ class MovilServiceTest {
 
 	@Test
 	void testFindBydMarca() {
-		movil = new Movil("modelo1",  1, 2, 1f, 2, 1, false, 1, 1f);
+		Marca marca = new Marca("Apple");
+		movil = new Movil("modelo1",  1, 2, 1f, 2, 1, false, 1, 1f, marca);
+		
 		listaMoviles.add(movil);
 		movilservicio.addAll(listaMoviles);
-
 		int esperado = 1;
-		int actual = movilservicio.findByMarca("Marca2").size();
-		assertTrue(movilservicio.findByMarca("Marca2") != null);
+		int actual = movilservicio.findByMarca("Apple").size();
+		assertTrue(movilservicio.findByMarca("Apple") != null);
 		assertEquals(esperado, actual);
+	}
+	
+	//TODO test de filtrado, si quereis, podemos hacerlo en varios test para no congestionar todo el test
+	@Test
+	void testFiltrado() {
+		
+		
+				
 	}
 }

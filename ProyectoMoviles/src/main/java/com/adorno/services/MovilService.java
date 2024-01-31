@@ -71,7 +71,9 @@ public class MovilService implements Services<Movil> {
 		return movilRepo.findByMarca(marcaRepo.findByNombreIgnoreCase(marca));
 
 	}
-
+	public List<Movil> findByNfc(boolean nfc){
+		return movilRepo.findByNfc(nfc);
+	}
 	public MovilResumenDTO getByIdResumen(long id) {
 		return movilResumenDTOMapper.mapToDTO(getById(id).get());
 	}
@@ -81,6 +83,7 @@ public class MovilService implements Services<Movil> {
 			return movilResumenDTOMapper.mapToDTO(movil);
 		}).collect(Collectors.toList());
 	}
+	
 
 	public List<MovilResumenDTO> mapListaFiltrados(List<Movil> filtrados) {
 		List<MovilResumenDTO> filtradosResumen = new ArrayList<>();
@@ -115,4 +118,5 @@ public class MovilService implements Services<Movil> {
 		List<Movil> movilesMarca = movilRepo.findByMarca(marcaRepo.findByNombreIgnoreCase(request.getMarca()));
 		return mapListaFiltrados(movilesMarca);
 	}
+
 }

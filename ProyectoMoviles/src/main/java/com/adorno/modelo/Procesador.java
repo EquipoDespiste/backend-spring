@@ -28,28 +28,33 @@ public class Procesador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Min(value = 1)
-	@NotNull
+	
 	private Long id;
 	@Size(min = 10, max = 75)
 	@NotBlank
 	@NotNull
-	@Pattern(regexp = "[a-zA-Z0-9]", message = "Este campo solo debe contener letras y/o numeros")
+	//@Pattern(regexp = "[a-zA-Z0-9]", message = "Este campo solo debe contener letras y/o numeros")
 	private String tipo;
-	@NotEmpty
+	@NotNull
 	@Min(value = 1)
 	@Max(value = 32)
 	@Positive
 	private int nucleos;
-	@NotEmpty
+	@NotNull
 	@Positive
 	@DecimalMax(value = "4.9", inclusive = true)
 	private float velocidad_max;
-	
-	public Procesador(String tipo, int nucleos, float velocidad_max) {
+	public Procesador(@Size(min = 10, max = 75) @NotBlank @NotNull String tipo,
+			@NotNull @Min(1) @Max(32) @Positive int nucleos,
+			@NotNull @Positive @DecimalMax(value = "4.9", inclusive = true) float velocidad_max) {
 		super();
 		this.tipo = tipo;
 		this.nucleos = nucleos;
 		this.velocidad_max = velocidad_max;
 	}
+	
+	
+
+	
 
 }

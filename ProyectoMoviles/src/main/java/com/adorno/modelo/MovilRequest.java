@@ -15,26 +15,15 @@ public class MovilRequest {
 	
 	
 	private String marca;
-	@Min(value=1)
-	@Positive
-	private float precioMin;
-	@Max(value = 99999)
-	@Positive
-	private float precioMax;
-	@Min(value=1)
-	@Positive
-	private int ramMin;
-	@Max(value = 99999)
-	@Positive
-	private int ramMax;
-	
-	private boolean nfc;
+	private Float precioMin;
+	private Float precioMax;
+	private Integer ramMin;
+	private Integer ramMax;
+	private Boolean nfc;
 	private String tecnologiaPantalla;
-	
-	
-	
-	public MovilRequest(String marca, @Min(1) @Positive @DefaultValue(value = "1") float precioMin, @Max(99999) @Positive @DefaultValue(value = "999999.99") float precioMax, int ramMin, int ramMax,
-			boolean nfc, String tecnologiaPantalla) {
+
+	public MovilRequest(String marca, Float precioMin, Float precioMax, Integer ramMin, Integer ramMax,
+			Boolean nfc, String tecnologiaPantalla) {
 		super();
 		this.marca = marca;
 		this.precioMin = precioMin;

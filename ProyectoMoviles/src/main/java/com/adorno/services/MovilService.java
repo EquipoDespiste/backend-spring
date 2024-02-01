@@ -7,6 +7,18 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.adorno.criterio.Criterio;
+import com.adorno.criterio.CriterioBoolean;
+import com.adorno.criterio.CriterioIntervaloDecimal;
+import com.adorno.criterio.CriterioIntervaloEntero;
+import com.adorno.criterio.CriterioMarca;
+import com.adorno.criterio.CriterioPantalla;
+import com.adorno.filtros.Filtro;
+import com.adorno.filtros.FiltroMarca;
+import com.adorno.filtros.FiltroNFC;
+import com.adorno.filtros.FiltroPantallaTech;
+import com.adorno.filtros.FiltroPrecio;
+import com.adorno.filtros.FiltroRam;
 import com.adorno.modelo.Marca;
 import com.adorno.modelo.Movil;
 import com.adorno.modelo.MovilRequest;
@@ -101,17 +113,40 @@ public class MovilService implements Services<Movil> {
 
 		List<Movil> moviles = this.movilRepo.findByMarca(marca);
 
-		moviles.stream().filter(m -> {
-			return m.getPrecio_actual() >= request.getPrecioMin() && m.getPrecio_actual() <= request.getPrecioMax();
-		}).filter((movil) -> {
-			return movil.getRam() >= request.getRamMin() && movil.getRam() <= request.getRamMax();
-		}).filter((movil) -> {
-			return movil.isNfc() == request.isNfc();
-		}).filter((movil) -> {
-			return movil.getTecnologiaPantalla().equals(request.getTecnologiaPantalla());
-		});
+		
+		List<Filtro<Movil>> filtros = loadFilters(request);
+		
+		
+		
+//		moviles.stream().filter(m -> {
+//			return m.getPrecio_actual() >= request.getPrecioMin() && m.getPrecio_actual() <= request.getPrecioMax();
+//		}).filter((movil) -> {
+//			return movil.getRam() >= request.getRamMin() && movil.getRam() <= request.getRamMax();
+//		}).filter((movil) -> {
+//			return movil.isNfc() == request.isNfc();
+//		}).filter((movil) -> {
+//			return movil.getTecnologiaPantalla().equals(request.getTecnologiaPantalla());
+//		});
 
 		return null;
+	}
+
+	private List<Filtro<Movil>> loadFilters(MovilRequest request) {
+		List<Filtro<Movil>> filtros = new ArrayList<>();
+		
+		Criterio<String> criterioMarca = new CriterioMarca(request.getMarca());
+		Criterio<Float> criterioPrecio = new CriterioIntervaloDecimal(request.getPrecioMin(), request.getPrecioMax());
+		Criterio<Integer> criterioRam = new CriterioIntervaloEntero(request.getRamMin(), request.getRamMax());
+		Criterio<Boolean> criterioNFC = new CriterioBoolean(request.getNfc());
+		Criterio<String> criterioPantalla = new CriterioPantalla(request.getTecnologiaPantalla());
+		
+		filtros.add(new FiltroMarca(criterioMarca));
+		filtros.add(new FiltroPrecio(criterioPrecio));
+		filtros.add(new FiltroRam(criterioRam));
+		filtros.add(new FiltroNFC(criterioNFC));
+		filtros.add(new FiltroPantallaTech(criterioPantalla));
+		
+		return filtros;
 	}
 
 	public List<MovilResumenDTO> filtracion(MovilRequest request) {

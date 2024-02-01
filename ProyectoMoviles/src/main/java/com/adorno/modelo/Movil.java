@@ -68,11 +68,11 @@ public class Movil {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Marca marca;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Pantalla pantalla;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Dimension dimension;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Procesador procesador;
 
 	public Movil(String modelo, int almacenamiento_gb, int ram, float peso, int camara, int bateria, boolean nfc,

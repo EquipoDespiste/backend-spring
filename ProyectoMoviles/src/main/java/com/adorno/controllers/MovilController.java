@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adorno.modelo.Movil;
+import com.adorno.modelo.MovilRequest;
+import com.adorno.modelo.dto.MovilResumenDTO;
 import com.adorno.services.MovilService;
 
 @RestController
@@ -62,12 +64,17 @@ public class MovilController {
 	}
 	
 	
-	@GetMapping("find/{marca}")
+	@GetMapping("findbymarca/{marca}")
 	public ResponseEntity<List<Movil>> findByMarca(@PathVariable String marca) {
+		return Optional.of(new ResponseEntity<List<Movil>>(movilService.findByMarca(marca),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));	
+	}
+	
+	@GetMapping("findByFiltro")
+	public ResponseEntity<List<MovilResumenDTO>> findByMarcaFiltrado(@RequestBody MovilRequest request) {
+	//	System.out.println(request);
+		List<MovilResumenDTO> movilesFiltrados = this.movilService.getByMarcaResumen(request);
 		
-		return Optional.of(new ResponseEntity<List<Movil>>(movilService.findByMarca(marca),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
-		
-		
+		return Optional.of(new ResponseEntity<List<MovilResumenDTO>>(movilesFiltrados,HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 	}
 
 	

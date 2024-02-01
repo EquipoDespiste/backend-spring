@@ -30,7 +30,7 @@ public class Procesador {
 	@Min(value = 1)
 	
 	private Long id;
-	@Size(min = 10, max = 75)
+	@Size(min = 5, max = 75)
 	@NotBlank
 	@NotNull
 	//@Pattern(regexp = "[a-zA-Z0-9]", message = "Este campo solo debe contener letras y/o numeros")
@@ -44,7 +44,7 @@ public class Procesador {
 	@Positive
 	@DecimalMax(value = "4.9", inclusive = true)
 	private float velocidad_max;
-	public Procesador(@Size(min = 10, max = 75) @NotBlank @NotNull String tipo,
+	public Procesador(@Size(min = 5, max = 75) @NotBlank @NotNull String tipo,
 			@NotNull @Min(1) @Max(32) @Positive int nucleos,
 			@NotNull @Positive @DecimalMax(value = "4.9", inclusive = true) float velocidad_max) {
 		super();

@@ -13,7 +13,7 @@ public class FiltroMarca implements Filtro<Movil> {
 
 	@Override
 	public boolean filter(Movil t) {
-		return this.criterio.passCriterio(t.getModelo());
+		return this.criterio.passCriterio(t.getNombreMarca());
 	}
 
 }

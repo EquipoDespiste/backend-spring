@@ -49,12 +49,13 @@ public class ProcesadorService implements Services<Procesador>{
 
 	@Override
 	public boolean addAll(List<Procesador> procesadores) {
-		procesadores.stream()
-		.forEach((procesador)->{
-			procesadorRepo.save(procesador);
-		});
+//		procesadores.stream()
+//		.forEach((procesador)->{
+//			procesadorRepo.save(procesador);
+//		});
+		this.procesadorRepo.saveAll(procesadores);
 		
-		return true;
+		return  true;
 	}
 	
 	

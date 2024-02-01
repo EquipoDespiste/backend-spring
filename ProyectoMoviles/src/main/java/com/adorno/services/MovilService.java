@@ -100,11 +100,11 @@ public class MovilService implements Services<Movil> {
 	
 
 	public List<MovilResumenDTO> getByMarcaResumen(MovilRequest request) {
+		//	Marca marca = this.marcaRepo.findByNombreIgnoreCase(request.getMarca());
 
-		Marca marca = this.marcaRepo.findByNombreIgnoreCase(request.getMarca());
+		List<Movil> moviles = this.movilRepo.findAll();
 
-		List<Movil> moviles = this.movilRepo.findByMarca(marca);
-
+		moviles.forEach(m-> System.out.println(m.toString()));
 		
 		List<Filtro<Movil>> filtros = loadFilters(request);
 		

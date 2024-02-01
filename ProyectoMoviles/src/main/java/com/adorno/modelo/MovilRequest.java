@@ -33,4 +33,10 @@ public class MovilRequest {
 		this.nfc = nfc;
 		this.tecnologiaPantalla = tecnologiaPantalla;
 	}
+
+	@Override
+	public String toString() {
+		return "MovilRequest [marca=" + marca + ", precioMin=" + precioMin + ", precioMax=" + precioMax + ", ramMin="
+				+ ramMin + ", ramMax=" + ramMax + ", nfc=" + nfc + ", tecnologiaPantalla=" + tecnologiaPantalla + "]";
+	}
 }

@@ -138,4 +138,8 @@ public class Movil {
 		this.marca = marca;
 	}
 
+	public String getNombreMarca() {
+		return marca.getNombre();
+	}
+
 }

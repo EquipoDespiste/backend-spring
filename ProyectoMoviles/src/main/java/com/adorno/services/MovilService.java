@@ -97,15 +97,7 @@ public class MovilService implements Services<Movil> {
 	}
 	
 
-	public List<MovilResumenDTO> mapListaFiltrados(List<Movil> filtrados) {
-		List<MovilResumenDTO> filtradosResumen = new ArrayList<>();
-		filtrados.forEach((movil) -> {
-			filtradosResumen.add(movilResumenDTOMapper.mapToDTO(movil));
-		});
-
-		return filtradosResumen;
-
-	}
+	
 
 	public List<MovilResumenDTO> getByMarcaResumen(MovilRequest request) {
 
@@ -115,6 +107,13 @@ public class MovilService implements Services<Movil> {
 
 		
 		List<Filtro<Movil>> filtros = loadFilters(request);
+		
+		for (Filtro<Movil> filtro : filtros) {
+			moviles = moviles.stream()
+			.filter(m->{
+				return filtro.filter(m);
+			}).collect(Collectors.toList());
+		}
 		
 		
 		
@@ -128,7 +127,7 @@ public class MovilService implements Services<Movil> {
 //			return movil.getTecnologiaPantalla().equals(request.getTecnologiaPantalla());
 //		});
 
-		return null;
+		return mapListaFiltrados(moviles);
 	}
 
 	private List<Filtro<Movil>> loadFilters(MovilRequest request) {
@@ -148,7 +147,18 @@ public class MovilService implements Services<Movil> {
 		
 		return filtros;
 	}
+	
+	public List<MovilResumenDTO> mapListaFiltrados(List<Movil> filtrados) {
+		List<MovilResumenDTO> filtradosResumen = new ArrayList<>();
+		filtrados.forEach((movil) -> {
+			filtradosResumen.add(movilResumenDTOMapper.mapToDTO(movil));
+		});
 
+		return filtradosResumen;
+
+	}
+	
+	// Codigo muerto ------------------------------------------
 	public List<MovilResumenDTO> filtracion(MovilRequest request) {
 		List<Movil> movilesMarca = movilRepo.findByMarca(marcaRepo.findByNombreIgnoreCase(request.getMarca()));
 		return mapListaFiltrados(movilesMarca);

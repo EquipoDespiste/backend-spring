@@ -60,10 +60,10 @@ public class MarcaService implements Services<String> {
 //			this.marcaRepo.save(marca);
 //		});
 		
-		this.marcaRepo.saveAll(t.stream()
+		
+		return this.marcaRepo.saveAll(t.stream()
 								.map(nombre -> new Marca(nombre))
-								.collect(Collectors.toList()));
-		return false;
+								.collect(Collectors.toList())) != null;
 	}
 
 	public Marca getMarcaByNombre(String marca) {

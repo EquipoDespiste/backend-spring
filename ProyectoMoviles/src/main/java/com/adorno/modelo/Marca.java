@@ -18,7 +18,7 @@ public class Marca {
 	
 	private Long id;
 	
-	@NotBlank
+	@NotNull
 	private String nombre;
 	
 	public Marca(String nombre) {

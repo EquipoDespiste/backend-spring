@@ -47,7 +47,7 @@ public class MarcaController  {
 		return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
 
-	@PostMapping("/insercion")
+	@PostMapping("/insertar")
 	public ResponseEntity<Boolean> insert(@RequestBody String t) {
 		
 		boolean isInsert= false;
@@ -59,7 +59,7 @@ public class MarcaController  {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isInsert);
 	}
 
-	@PostMapping("/insercion-lista")
+	@PostMapping("/insertar-lista")
 	public ResponseEntity<Boolean> insertAll(@RequestBody List<String> t) {
 		boolean isInsertAll= false;
 		

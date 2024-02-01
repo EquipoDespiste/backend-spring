@@ -38,7 +38,7 @@ public class PantallaController {
 		return Optional.of(new ResponseEntity<Pantalla>(pantallaService.getById(id).get(), HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
 	}
-	@PostMapping("/insercion")
+	@PostMapping("/insertar")
 	public  ResponseEntity<Boolean>  insert(@RequestBody Pantalla pantalla) {
 		return Optional.of(new ResponseEntity<Boolean>(pantallaService.add(pantalla),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.UNAUTHORIZED));
 	}

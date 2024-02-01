@@ -39,7 +39,7 @@ public class MovilController {
 		return Optional.of(new ResponseEntity<Movil>(movilService.getById(id).get(), HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
-	@PostMapping("/insercion")
+	@PostMapping("/insertar")
 	public ResponseEntity<Boolean> insert(@RequestBody Movil movil) {
 		
 		

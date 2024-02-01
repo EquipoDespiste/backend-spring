@@ -36,7 +36,7 @@ public class ProcesadorController {
 		return Optional.of(new ResponseEntity<Procesador>(procesadorService.getById(id).get(), HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND ));
 	}
 
-	@PostMapping("/insercion")
+	@PostMapping("/insertar")
 	public ResponseEntity<Boolean> insert(@RequestBody Procesador  procesador) {
 	
 		return Optional.of(new ResponseEntity<Boolean>(procesadorService.add(procesador),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.UNAUTHORIZED));

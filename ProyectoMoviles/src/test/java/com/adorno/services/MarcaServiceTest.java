@@ -12,20 +12,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.adorno.modelo.Marca;
+import com.adorno.modelo.Movil;
 
 @SpringBootTest
 class MarcaServiceTest {
 
 	@Autowired
 	MarcaService marcaService;
+
 	private List<Marca> listaMarcas;
 	private Marca marca;
-	
+
 	@BeforeEach
 	void before() {
 		listaMarcas = new ArrayList<>();
 	}
-	
+
 	@Test
 	void testAdd() {
 		assertTrue(marcaService.add("marca1"));
@@ -39,8 +41,25 @@ class MarcaServiceTest {
 
 	@Test
 	void testFindAll() {
+		List<String> marcas = new ArrayList<>();
+		marcas.add("Nokia");
+		
 		marcaService.add("marca1");
 		assertTrue(!marcaService.findAll().isEmpty());
+		
+		assertTrue(!marcas.isEmpty());
+	}
+	
+	@Test
+	void insertAll() {
+		List<String> marcas = new ArrayList<>();
+		marcas.add("nokia");
+		marcas.add("samsung");
+		marcas.add("Hawuei");
+		marcas.addAll(marcas);
+		marcaService.addAll(marcas);
+		
+		
 	}
 
 }

@@ -164,4 +164,14 @@ public class MovilService implements Services<Movil> {
 		return mapListaFiltrados(movilesMarca);
 	}
 
+	public List<MovilResumenDTO> comparar(long id1, long id2) {
+
+		List<MovilResumenDTO> moviles = new ArrayList<>();
+		
+		moviles.add(movilResumenDTOMapper.mapToDTO(movilRepo.findById(id1).get()));
+		moviles.add(movilResumenDTOMapper.mapToDTO(movilRepo.findById(id2).get()));
+		
+		return moviles;
+	}
+
 }

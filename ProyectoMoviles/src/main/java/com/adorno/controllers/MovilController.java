@@ -78,7 +78,10 @@ public class MovilController {
 	}
 
 	
-
+	@GetMapping("compare/{id1}&{id2}")
+	public ResponseEntity<List<MovilResumenDTO>> compare(@PathVariable long id1, @PathVariable long id2){
+		return Optional.of(new ResponseEntity<List<MovilResumenDTO>>(movilService.comparar(id1,id2),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
+	}
 	
 	
 

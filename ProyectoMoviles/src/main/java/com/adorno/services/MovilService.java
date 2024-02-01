@@ -1,6 +1,8 @@
 package com.adorno.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -148,22 +150,8 @@ public class MovilService implements Services<Movil> {
 		return filtros;
 	}
 	
-	public List<MovilResumenDTO> mapListaFiltrados(List<Movil> filtrados) {
-		List<MovilResumenDTO> filtradosResumen = new ArrayList<>();
-		filtrados.forEach((movil) -> {
-			filtradosResumen.add(movilResumenDTOMapper.mapToDTO(movil));
-		});
-
-		return filtradosResumen;
-
-	}
 	
-	// Codigo muerto ------------------------------------------
-	public List<MovilResumenDTO> filtracion(MovilRequest request) {
-		List<Movil> movilesMarca = movilRepo.findByMarca(marcaRepo.findByNombreIgnoreCase(request.getMarca()));
-		return mapListaFiltrados(movilesMarca);
-	}
-
+	
 	public List<MovilResumenDTO> comparar(long id1, long id2) {
 
 		List<MovilResumenDTO> moviles = new ArrayList<>();
@@ -174,4 +162,26 @@ public class MovilService implements Services<Movil> {
 		return moviles;
 	}
 
+	public List<MovilResumenDTO> getTopMoviles() {
+		List<Movil> moviles = this.movilRepo.findAll().stream()
+				.sorted((movil1, movil2)-> {
+					return Integer.valueOf(movil1.getContador_visita()).compareTo(movil2.getContador_visita())*-1;
+				})
+				.limit(5)
+				.collect(Collectors.toList());
+		moviles.forEach(m->System.out.println(m.getModelo()+"- "+m.getContador_visita()));
+		
+		return mapListaFiltrados(moviles);
+	}
+
+	
+	public List<MovilResumenDTO> mapListaFiltrados(List<Movil> filtrados) {
+		List<MovilResumenDTO> filtradosResumen = new ArrayList<>();
+		filtrados.forEach((movil) -> {
+			filtradosResumen.add(movilResumenDTOMapper.mapToDTO(movil));
+		});
+
+		return filtradosResumen;
+
+	}
 }

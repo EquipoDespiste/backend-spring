@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -83,6 +84,10 @@ public class MovilController {
 		return Optional.of(new ResponseEntity<List<MovilResumenDTO>>(movilService.comparar(id1,id2),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 	}
 	
-	
+	@GetMapping("top5")
+	public ResponseEntity<List<MovilResumenDTO>> getTopFive(){
+		
+		return Optional.of(new ResponseEntity<List<MovilResumenDTO>>(movilService.getTopMoviles(),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
+	}
 
 }

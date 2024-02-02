@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.adorno.modelo.Dimension;
 import com.adorno.services.DimensionService;
 
-@Component
+//@Component
 public class DimensionPopulate implements Populate{
 	private final DimensionService dimensionService;
 	

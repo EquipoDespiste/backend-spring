@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.adorno.modelo.Procesador;
 import com.adorno.services.ProcesadorService;
-@Component
+//@Component
 public class ProcesadorPopulate implements Populate {
 
 	private final ProcesadorService procesadorService;

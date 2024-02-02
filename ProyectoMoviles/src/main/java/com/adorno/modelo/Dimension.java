@@ -1,5 +1,7 @@
 package com.adorno.modelo;
 
+import java.util.Objects;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +30,30 @@ public class Dimension {
 		this.alto = alto;
 		this.ancho = ancho;
 		this.grosor = grosor;
-	}	
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Dimension other = (Dimension) obj;
+		return Float.floatToIntBits(alto) == Float.floatToIntBits(other.alto)
+				&& Float.floatToIntBits(ancho) == Float.floatToIntBits(other.ancho)
+				&& Float.floatToIntBits(grosor) == Float.floatToIntBits(other.grosor);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(alto, ancho, grosor);
+	}
+
+	
+	
+	
 	
 
 }

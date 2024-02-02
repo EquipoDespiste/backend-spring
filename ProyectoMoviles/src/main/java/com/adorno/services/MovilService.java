@@ -19,6 +19,7 @@ import com.adorno.filtros.FiltroNFC;
 import com.adorno.filtros.FiltroPantallaTech;
 import com.adorno.filtros.FiltroPrecio;
 import com.adorno.filtros.FiltroRam;
+import com.adorno.modelo.Marca;
 import com.adorno.modelo.Movil;
 import com.adorno.modelo.MovilRequest;
 import com.adorno.modelo.dto.MovilDetalladoDTO;

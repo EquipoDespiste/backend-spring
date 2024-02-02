@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.adorno.modelo.Pantalla;
 import com.adorno.services.PantallaService;
-@Component
+//@Component
 public class PantallaPopulate implements Populate{
 	private final PantallaService pantallaService ;
 

@@ -85,6 +85,10 @@ public class MovilService implements Services<Movil> {
 		return true;
 	}
 
+	public Boolean update(Movil update) {
+		
+	}
+	
 	public List<Movil> findByMarca(String marca) {
 		return movilRepo.findByMarca(marcaRepo.findByNombreIgnoreCase(marca));
 
@@ -121,17 +125,6 @@ public class MovilService implements Services<Movil> {
 			}).collect(Collectors.toList());
 		}
 		
-		
-		
-//		moviles.stream().filter(m -> {
-//			return m.getPrecio_actual() >= request.getPrecioMin() && m.getPrecio_actual() <= request.getPrecioMax();
-//		}).filter((movil) -> {
-//			return movil.getRam() >= request.getRamMin() && movil.getRam() <= request.getRamMax();
-//		}).filter((movil) -> {
-//			return movil.isNfc() == request.isNfc();
-//		}).filter((movil) -> {
-//			return movil.getTecnologiaPantalla().equals(request.getTecnologiaPantalla());
-//		});
 
 		return mapListaFiltrados(moviles);
 	}

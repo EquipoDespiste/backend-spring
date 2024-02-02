@@ -86,7 +86,13 @@ public class MovilService implements Services<Movil> {
 	}
 
 	public Boolean update(Movil update) {
-		
+		Optional<Movil> movil = this.movilRepo.findById(update.getId());
+		if(movil.isPresent()) {
+			//Habria que validar los cambios ? ?? 
+			this.movilRepo.save(update);
+			return true;
+		}
+		return false;
 	}
 	
 	public List<Movil> findByMarca(String marca) {

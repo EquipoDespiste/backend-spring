@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -102,6 +103,11 @@ public class MovilController {
 		return Optional.of(new ResponseEntity<MovilDetalladoDTO>(movilService.detallarMovil(dto), HttpStatus.OK))
 				.orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 
+	}
+	@PutMapping("update")
+	public ResponseEntity<Boolean> update(@RequestBody Movil movil) {
+		return Optional.of(new ResponseEntity<Boolean>(movilService.update(movil), HttpStatus.OK))
+				.orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 	}
 
 }

@@ -142,4 +142,8 @@ public class Movil {
 		return marca.getNombre();
 	}
 
+	public int getNucleosProcesador() {
+		return procesador.getNucleos();
+	}
+
 }

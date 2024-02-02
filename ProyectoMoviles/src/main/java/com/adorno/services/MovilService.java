@@ -24,7 +24,9 @@ import com.adorno.filtros.FiltroRam;
 import com.adorno.modelo.Marca;
 import com.adorno.modelo.Movil;
 import com.adorno.modelo.MovilRequest;
+import com.adorno.modelo.dto.MovilDetalladoDTO;
 import com.adorno.modelo.dto.MovilResumenDTO;
+import com.adorno.modelo.mapper.MovilDetalladoDTOMapper;
 import com.adorno.modelo.mapper.MovilResumenDTOMapper;
 import com.adorno.repositorio.IMarcaRepositorio;
 import com.adorno.repositorio.IMovilRepositorio;
@@ -36,13 +38,15 @@ public class MovilService implements Services<Movil> {
 	private final IMovilRepositorio movilRepo;
 	private final IMarcaRepositorio marcaRepo;
 	private final MovilResumenDTOMapper movilResumenDTOMapper;
+	private final MovilDetalladoDTOMapper movilDetalladoDTOMapper;
 
 	public MovilService(IMovilRepositorio movilRepo, IMarcaRepositorio marcaRepo,
-			MovilResumenDTOMapper movilResumenDTOMapper) {
+			MovilResumenDTOMapper movilResumenDTOMapper, MovilDetalladoDTOMapper movilDetalladoDTOMapper) {
 		super();
 		this.movilRepo = movilRepo;
 		this.marcaRepo = marcaRepo;
 		this.movilResumenDTOMapper = movilResumenDTOMapper;
+		this.movilDetalladoDTOMapper= movilDetalladoDTOMapper;
 	}
 
 	@Override
@@ -183,5 +187,20 @@ public class MovilService implements Services<Movil> {
 
 		return filtradosResumen;
 
+	}
+
+	public MovilDetalladoDTO detallarMovil(MovilResumenDTO dto) {
+		Movil movil = new Movil();
+
+		movil = movilRepo.findAll().stream().filter(m -> {
+			return m.getNombreMarca().equals(dto.getMarca())&&
+					m.getModelo().equals(dto.getModelo())&&
+					m.getAlmacenamiento_gb()==dto.getAlmacenamiento_gb()&&
+					m.getRam()==dto.getRam()&&
+					m.getPrecio_actual()==dto.getPrecio()&&
+					m.getNucleosProcesador()==dto.getNucleosProcesador();
+		}).findFirst().get();
+
+		return movilDetalladoDTOMapper.mapToDTO(movil);
 	}
 }

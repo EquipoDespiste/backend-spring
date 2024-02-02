@@ -10,7 +10,7 @@ import com.adorno.modelo.Movil;
 @Repository
 public interface IMovilRepositorio extends JpaRepository<Movil, Long>{
 
-	public List<Movil> findByMarca(Marca marca);
+	public List<Movil> findAllByMarca(Marca marca);
 
 
 

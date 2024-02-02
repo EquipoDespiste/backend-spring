@@ -14,16 +14,17 @@ import lombok.*;
 public class Marca {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Min(value=1)
-	
+	@Min(value = 1)
+
 	private Long id;
-	
+
 	@NotNull
+//	@Column(unique = true)
 	private String nombre;
-	
+
 	public Marca(String nombre) {
 		super();
 		this.nombre = nombre;
 	}
-	
+
 }

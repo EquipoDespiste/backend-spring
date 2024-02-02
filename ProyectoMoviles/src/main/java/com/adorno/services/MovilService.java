@@ -46,11 +46,14 @@ public class MovilService implements Services<Movil> {
 		this.movilRepo = movilRepo;
 		this.marcaRepo = marcaRepo;
 		this.movilResumenDTOMapper = movilResumenDTOMapper;
-		this.movilDetalladoDTOMapper= movilDetalladoDTOMapper;
+		this.movilDetalladoDTOMapper = movilDetalladoDTOMapper;
 	}
 
 	@Override
 	public boolean add(Movil movil) {
+		Marca marca = marcaRepo.findByNombreIgnoreCase(movil.getNombreMarca());
+//		System.err.println(marca.toString());
+		movil.setMarca(marca);
 		return movilRepo.save(movil) != null;
 	}
 
@@ -80,18 +83,27 @@ public class MovilService implements Services<Movil> {
 	// devuelvo true porque funciona y porque no hay otro metodo
 	public boolean addAll(List<Movil> moviles) {
 		moviles.stream().forEach((movil) -> {
+			Marca marca = marcaRepo.findByNombreIgnoreCase(movil.getNombreMarca());
+//			System.err.println(marca.toString());
+			movil.setMarca(marca);
 			movilRepo.save(movil);
 		});
 		return true;
 	}
 
 	public List<Movil> findByMarca(String marca) {
-		return movilRepo.findByMarca(marcaRepo.findByNombreIgnoreCase(marca));
+		List<Marca> all = marcaRepo.findAll();
+		Marca byNombreIgnoreCase = marcaRepo.findByNombreIgnoreCase(marca);
+		List<Movil> allByMarca = movilRepo.findAllByMarca(byNombreIgnoreCase);
+		
+		return allByMarca;
 
 	}
-	public List<Movil> findByNfc(boolean nfc){
+
+	public List<Movil> findByNfc(boolean nfc) {
 		return movilRepo.findByNfc(nfc);
 	}
+
 	public MovilResumenDTO getByIdResumen(long id) {
 		return movilResumenDTOMapper.mapToDTO(getById(id).get());
 	}
@@ -101,28 +113,22 @@ public class MovilService implements Services<Movil> {
 			return movilResumenDTOMapper.mapToDTO(movil);
 		}).collect(Collectors.toList());
 	}
-	
-
-	
 
 	public List<MovilResumenDTO> getByMarcaResumen(MovilRequest request) {
-		//	Marca marca = this.marcaRepo.findByNombreIgnoreCase(request.getMarca());
+		// Marca marca = this.marcaRepo.findByNombreIgnoreCase(request.getMarca());
 
 		List<Movil> moviles = this.movilRepo.findAll();
 
-		moviles.forEach(m-> System.out.println(m.toString()));
-		
+		moviles.forEach(m -> System.out.println(m.toString()));
+
 		List<Filtro<Movil>> filtros = loadFilters(request);
-		
+
 		for (Filtro<Movil> filtro : filtros) {
-			moviles = moviles.stream()
-			.filter(m->{
+			moviles = moviles.stream().filter(m -> {
 				return filtro.filter(m);
 			}).collect(Collectors.toList());
 		}
-		
-		
-		
+
 //		moviles.stream().filter(m -> {
 //			return m.getPrecio_actual() >= request.getPrecioMin() && m.getPrecio_actual() <= request.getPrecioMax();
 //		}).filter((movil) -> {
@@ -138,47 +144,41 @@ public class MovilService implements Services<Movil> {
 
 	private List<Filtro<Movil>> loadFilters(MovilRequest request) {
 		List<Filtro<Movil>> filtros = new ArrayList<>();
-		
+
 		Criterio<String> criterioMarca = new CriterioMarca(request.getMarca());
 		Criterio<Float> criterioPrecio = new CriterioIntervaloDecimal(request.getPrecioMin(), request.getPrecioMax());
 		Criterio<Integer> criterioRam = new CriterioIntervaloEntero(request.getRamMin(), request.getRamMax());
 		Criterio<Boolean> criterioNFC = new CriterioBoolean(request.getNfc());
 		Criterio<String> criterioPantalla = new CriterioPantalla(request.getTecnologiaPantalla());
-		
+
 		filtros.add(new FiltroMarca(criterioMarca));
 		filtros.add(new FiltroPrecio(criterioPrecio));
 		filtros.add(new FiltroRam(criterioRam));
 		filtros.add(new FiltroNFC(criterioNFC));
 		filtros.add(new FiltroPantallaTech(criterioPantalla));
-		
+
 		return filtros;
 	}
-	
-	
-	
+
 	public List<MovilResumenDTO> comparar(long id1, long id2) {
 
 		List<MovilResumenDTO> moviles = new ArrayList<>();
-		
+
 		moviles.add(movilResumenDTOMapper.mapToDTO(movilRepo.findById(id1).get()));
 		moviles.add(movilResumenDTOMapper.mapToDTO(movilRepo.findById(id2).get()));
-		
+
 		return moviles;
 	}
 
 	public List<MovilResumenDTO> getTopMoviles() {
-		List<Movil> moviles = this.movilRepo.findAll().stream()
-				.sorted((movil1, movil2)-> {
-					return Integer.valueOf(movil1.getContador_visita()).compareTo(movil2.getContador_visita())*-1;
-				})
-				.limit(5)
-				.collect(Collectors.toList());
-		moviles.forEach(m->System.out.println(m.getModelo()+"- "+m.getContador_visita()));
-		
+		List<Movil> moviles = this.movilRepo.findAll().stream().sorted((movil1, movil2) -> {
+			return Integer.valueOf(movil1.getContador_visita()).compareTo(movil2.getContador_visita()) * -1;
+		}).limit(5).collect(Collectors.toList());
+		moviles.forEach(m -> System.out.println(m.getModelo() + "- " + m.getContador_visita()));
+
 		return mapListaFiltrados(moviles);
 	}
 
-	
 	public List<MovilResumenDTO> mapListaFiltrados(List<Movil> filtrados) {
 		List<MovilResumenDTO> filtradosResumen = new ArrayList<>();
 		filtrados.forEach((movil) -> {
@@ -193,12 +193,10 @@ public class MovilService implements Services<Movil> {
 		Movil movil = new Movil();
 
 		movil = movilRepo.findAll().stream().filter(m -> {
-			return m.getNombreMarca().equals(dto.getMarca())&&
-					m.getModelo().equals(dto.getModelo())&&
-					m.getAlmacenamiento_gb()==dto.getAlmacenamiento_gb()&&
-					m.getRam()==dto.getRam()&&
-					m.getPrecio_actual()==dto.getPrecio()&&
-					m.getNucleosProcesador()==dto.getNucleosProcesador();
+			return m.getNombreMarca().equals(dto.getMarca()) && m.getModelo().equals(dto.getModelo())
+					&& m.getAlmacenamiento_gb() == dto.getAlmacenamiento_gb() && m.getRam() == dto.getRam()
+					&& m.getPrecio_actual() == dto.getPrecio()
+					&& m.getNucleosProcesador() == dto.getNucleosProcesador();
 		}).findFirst().get();
 
 		return movilDetalladoDTOMapper.mapToDTO(movil);

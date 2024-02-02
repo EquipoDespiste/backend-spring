@@ -1,8 +1,6 @@
 package com.adorno.services;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,7 +19,6 @@ import com.adorno.filtros.FiltroNFC;
 import com.adorno.filtros.FiltroPantallaTech;
 import com.adorno.filtros.FiltroPrecio;
 import com.adorno.filtros.FiltroRam;
-import com.adorno.modelo.Marca;
 import com.adorno.modelo.Movil;
 import com.adorno.modelo.MovilRequest;
 import com.adorno.modelo.dto.MovilDetalladoDTO;
@@ -99,21 +96,12 @@ public class MovilService implements Services<Movil> {
 		return movilRepo.findByMarca(marcaRepo.findByNombreIgnoreCase(marca));
 
 	}
-	public List<Movil> findByNfc(boolean nfc){
-		return movilRepo.findByNfc(nfc);
-	}
-	public MovilResumenDTO getByIdResumen(long id) {
-		return movilResumenDTOMapper.mapToDTO(getById(id).get());
-	}
 
 	public List<MovilResumenDTO> findAllResumen() {
 		return findAll().stream().map((movil) -> {
 			return movilResumenDTOMapper.mapToDTO(movil);
 		}).collect(Collectors.toList());
 	}
-	
-
-	
 
 	public List<MovilResumenDTO> getByMarcaResumen(MovilRequest request) {
 		//	Marca marca = this.marcaRepo.findByNombreIgnoreCase(request.getMarca());
@@ -130,8 +118,6 @@ public class MovilService implements Services<Movil> {
 				return filtro.filter(m);
 			}).collect(Collectors.toList());
 		}
-		
-
 		return mapListaFiltrados(moviles);
 	}
 
@@ -185,7 +171,6 @@ public class MovilService implements Services<Movil> {
 		});
 
 		return filtradosResumen;
-
 	}
 
 	public MovilDetalladoDTO detallarMovil(MovilResumenDTO dto) {

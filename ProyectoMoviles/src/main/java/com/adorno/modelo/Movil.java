@@ -67,7 +67,6 @@ public class Movil {
 	private float precio_actual;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	
 	private Marca marca;
 	@ManyToOne
 	private Pantalla pantalla;

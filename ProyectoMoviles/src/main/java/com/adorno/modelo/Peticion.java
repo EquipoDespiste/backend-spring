@@ -8,7 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -32,5 +31,7 @@ public abstract class Peticion {
 	
 	private LocalDate fecha_creacion;
 	
+	private EstadoAnuncioPeticion estadoPeticion;
+	private TipoAnuncio tipoPeticion;
 	
 }

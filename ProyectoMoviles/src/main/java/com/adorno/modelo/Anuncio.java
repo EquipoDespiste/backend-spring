@@ -22,6 +22,7 @@ public abstract class Anuncio {
 	private Estado estado;
 	private TipoAnuncio tipoAnuncio;
 	
+	private EstadoAnuncioPeticion estadoAnuncio;
 	//TODO add User
 	
 }

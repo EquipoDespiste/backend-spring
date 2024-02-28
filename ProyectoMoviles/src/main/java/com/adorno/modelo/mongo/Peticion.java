@@ -15,24 +15,27 @@ public abstract class Peticion {
 
 	@Id
 	private ObjectId id;
-
+	/*
+	 * no sabemos aun si el user se guardara en mongo o en h2 por lo que 
+	 * quedamos este id asi
+	 */
 	private Long id_user;
-	private Long id_peticion;
+	/*
+	 * no se que referencia hace este id
+	 */
+	private ObjectId id_peticion;
 	private String oferta;
 
 	private LocalDate fecha_creacion;
-	//@DBRef(lazy = true) // esto es para la bidireccionalidad
-	//private List<User> usuarios;
+	// @DBRef(lazy = true) // esto es para la bidireccionalidad
+	// private List<User> usuarios;
 
-	public Peticion(Long id_user, Long id_peticion, String oferta, LocalDate fecha_creacion) {
+	public Peticion(Long id_user, ObjectId id_peticion, String oferta, LocalDate fecha_creacion) {
 		super();
 		this.id_user = id_user;
 		this.id_peticion = id_peticion;
 		this.oferta = oferta;
 		this.fecha_creacion = fecha_creacion;
 	}
-	
-	
-	
-	
+
 }

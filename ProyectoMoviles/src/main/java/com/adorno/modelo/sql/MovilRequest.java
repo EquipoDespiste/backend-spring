@@ -1,4 +1,4 @@
-package com.adorno.modelo;
+package com.adorno.modelo.sql;
 
 import org.springframework.boot.context.properties.bind.DefaultValue;
 

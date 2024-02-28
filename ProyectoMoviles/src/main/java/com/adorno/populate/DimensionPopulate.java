@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.adorno.modelo.Dimension;
+import com.adorno.modelo.sql.Dimension;
 import com.adorno.services.DimensionService;
 
 //@Component

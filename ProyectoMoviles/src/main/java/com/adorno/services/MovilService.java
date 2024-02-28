@@ -19,13 +19,13 @@ import com.adorno.filtros.FiltroNFC;
 import com.adorno.filtros.FiltroPantallaTech;
 import com.adorno.filtros.FiltroPrecio;
 import com.adorno.filtros.FiltroRam;
-import com.adorno.modelo.Marca;
-import com.adorno.modelo.Movil;
-import com.adorno.modelo.MovilRequest;
 import com.adorno.modelo.dto.MovilDetalladoDTO;
 import com.adorno.modelo.dto.MovilResumenDTO;
 import com.adorno.modelo.mapper.MovilDetalladoDTOMapper;
 import com.adorno.modelo.mapper.MovilResumenDTOMapper;
+import com.adorno.modelo.sql.Marca;
+import com.adorno.modelo.sql.Movil;
+import com.adorno.modelo.sql.MovilRequest;
 import com.adorno.repositorio.IMarcaRepositorio;
 import com.adorno.repositorio.IMovilRepositorio;
 

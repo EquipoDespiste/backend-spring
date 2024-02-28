@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.adorno.modelo.Movil;
-import com.adorno.modelo.Pantalla;
+import com.adorno.modelo.sql.Movil;
+import com.adorno.modelo.sql.Pantalla;
 import com.adorno.services.PantallaService;
 
 import org.springframework.web.bind.annotation.PostMapping;

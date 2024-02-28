@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.adorno.modelo.Movil;
-import com.adorno.modelo.MovilRequest;
 import com.adorno.modelo.dto.MovilDetalladoDTO;
 import com.adorno.modelo.dto.MovilResumenDTO;
+import com.adorno.modelo.sql.Movil;
+import com.adorno.modelo.sql.MovilRequest;
 import com.adorno.services.MovilService;
 
 @RestController

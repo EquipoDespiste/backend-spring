@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.adorno.modelo.Procesador;
+import com.adorno.modelo.sql.Procesador;
 import com.adorno.services.ProcesadorService;
 //@Component
 public class ProcesadorPopulate implements Populate {

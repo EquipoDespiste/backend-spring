@@ -1,8 +1,8 @@
 package com.adorno.modelo.dto;
 
-import com.adorno.modelo.Dimension;
-import com.adorno.modelo.Pantalla;
-import com.adorno.modelo.Procesador;
+import com.adorno.modelo.sql.Dimension;
+import com.adorno.modelo.sql.Pantalla;
+import com.adorno.modelo.sql.Procesador;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

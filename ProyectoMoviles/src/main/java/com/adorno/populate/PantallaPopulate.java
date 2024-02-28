@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.adorno.modelo.Pantalla;
+import com.adorno.modelo.sql.Pantalla;
 import com.adorno.services.PantallaService;
 //@Component
 public class PantallaPopulate implements Populate{

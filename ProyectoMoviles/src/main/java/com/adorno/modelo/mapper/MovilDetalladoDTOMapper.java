@@ -1,7 +1,7 @@
 package com.adorno.modelo.mapper;
 
-import com.adorno.modelo.Movil;
 import com.adorno.modelo.dto.MovilDetalladoDTO;
+import com.adorno.modelo.sql.Movil;
 
 public class MovilDetalladoDTOMapper implements IMapper<MovilDetalladoDTO, Movil> {
 

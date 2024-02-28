@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.adorno.modelo.Marca;
-import com.adorno.modelo.Movil;
+import com.adorno.modelo.sql.Marca;
+import com.adorno.modelo.sql.Movil;
 
 @SpringBootTest
 class MarcaServiceTest {

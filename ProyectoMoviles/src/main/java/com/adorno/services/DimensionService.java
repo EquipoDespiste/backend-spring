@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.adorno.modelo.Dimension;
+import com.adorno.modelo.sql.Dimension;
 import com.adorno.repositorio.IDimensionRepositorio;
 
 @Service

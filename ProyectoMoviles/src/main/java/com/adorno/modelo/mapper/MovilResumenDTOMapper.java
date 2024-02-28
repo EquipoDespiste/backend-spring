@@ -3,8 +3,8 @@ package com.adorno.modelo.mapper;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.adorno.modelo.Movil;
 import com.adorno.modelo.dto.MovilResumenDTO;
+import com.adorno.modelo.sql.Movil;
 import com.adorno.repositorio.IMovilRepositorio;
 
 public class MovilResumenDTOMapper implements IMapper<MovilResumenDTO, Movil> {

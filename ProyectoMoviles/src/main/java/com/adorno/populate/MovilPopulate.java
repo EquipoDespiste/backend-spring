@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.adorno.modelo.Marca;
-import com.adorno.modelo.Movil;
-import com.adorno.modelo.Pantalla;
-import com.adorno.modelo.Procesador;
-import com.adorno.modelo.Dimension;
+import com.adorno.modelo.sql.Dimension;
+import com.adorno.modelo.sql.Marca;
+import com.adorno.modelo.sql.Movil;
+import com.adorno.modelo.sql.Pantalla;
+import com.adorno.modelo.sql.Procesador;
 import com.adorno.services.MovilService;
 
 //@Component

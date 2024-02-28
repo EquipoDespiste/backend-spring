@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Anuncio {
+public abstract class Anuncio {
 	@Id
 	private ObjectId id;
 	private Long idMovil;

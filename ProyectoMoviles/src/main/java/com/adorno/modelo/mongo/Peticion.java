@@ -1,7 +1,6 @@
-package com.adorno.modelo;
+package com.adorno.modelo.mongo;
 
 import java.time.LocalDate;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import jakarta.persistence.Id;
@@ -21,4 +20,7 @@ public abstract class Peticion {
 	private String oferta;
 
 	private LocalDate fecha_creacion;
+	//@DBRef(lazy = true) // esto es para la bidireccionalidad
+	//private List<User> usuarios;
+	
 }

@@ -18,7 +18,6 @@ public class PeticionDTOMapper implements IMapper<PeticionDTO, Peticion>{
 
 	@Override
 	public Peticion mapToEntity(PeticionDTO t) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

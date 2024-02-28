@@ -23,7 +23,15 @@ public class ProcesadorService implements Services<Procesador>{
 	@Override
 	public boolean add(Procesador procesador) {
 		
-		return procesadorRepo.save(procesador) != null;
+		//return procesadorRepo.save(procesador) != null;
+		Optional<Procesador> procesadorO = Optional.ofNullable(procesadorRepo.findByTipoIgnoreCase(procesador.getTipo()));
+		if (!procesadorO.isPresent()) {
+			return procesadorRepo.save(new Procesador(procesador.getTipo(),procesador.getNucleos(),procesador.getVelocidad_max())) != null;
+		}
+		return false;
+		
+		
+		
 	}
 
 	@Override
@@ -45,6 +53,7 @@ public class ProcesadorService implements Services<Procesador>{
 	@Override
 	public List<Procesador> findAll() {
 		return procesadorRepo.findAll();
+		
 	}
 
 	@Override
@@ -54,8 +63,14 @@ public class ProcesadorService implements Services<Procesador>{
 //			procesadorRepo.save(procesador);
 //		});
 		this.procesadorRepo.saveAll(procesadores);
-		
 		return  true;
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	

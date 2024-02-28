@@ -19,6 +19,7 @@ import com.adorno.filtros.FiltroNFC;
 import com.adorno.filtros.FiltroPantallaTech;
 import com.adorno.filtros.FiltroPrecio;
 import com.adorno.filtros.FiltroRam;
+import com.adorno.modelo.Marca;
 import com.adorno.modelo.Movil;
 import com.adorno.modelo.MovilRequest;
 import com.adorno.modelo.dto.MovilDetalladoDTO;
@@ -48,10 +49,12 @@ public class MovilService implements Services<Movil> {
 
 	@Override
 	public boolean add(Movil movil) {
-		Marca marca = marcaRepo.findByNombreIgnoreCase(movil.getNombreMarca());
-//		System.err.println(marca.toString());
-		movil.setMarca(marca);
-		return movilRepo.save(movil) != null;
+		Optional<Marca> marca = Optional.of(marcaRepo.findByNombreIgnoreCase(movil.getNombreMarca()));
+		if(marca.isPresent()) {
+			movil.setMarca(marca.get());
+			return movilRepo.save(movil) != null;			
+		}
+		return false;
 	}
 
 	@Override
@@ -80,12 +83,13 @@ public class MovilService implements Services<Movil> {
 	// devuelvo true porque funciona y porque no hay otro metodo
 	public boolean addAll(List<Movil> moviles) {
 		moviles.stream().forEach((movil) -> {
-			Marca marca = marcaRepo.findByNombreIgnoreCase(movil.getNombreMarca());
-//			System.err.println(marca.toString());
-			movil.setMarca(marca);
-			movilRepo.save(movil);
+			Optional<Marca> marca = Optional.of(marcaRepo.findByNombreIgnoreCase(movil.getNombreMarca()));
+			if(marca.isPresent()) {
+				movil.setMarca(marca.get());
+				movilRepo.save(movil);
+			}
 		});
-		return true;
+		return true; // Esto hay que cambiarlo,esta muy feo
 	}
 
 	public Boolean update(Movil update) {
@@ -100,8 +104,9 @@ public class MovilService implements Services<Movil> {
 	
 	public List<Movil> findByMarca(String marca) {
 		List<Marca> all = marcaRepo.findAll();
-		Marca byNombreIgnoreCase = marcaRepo.findByNombreIgnoreCase(marca);
-		List<Movil> allByMarca = movilRepo.findAllByMarca(byNombreIgnoreCase);
+		Optional<Marca> marcaBuscada =Optional.of(marcaRepo.findByNombreIgnoreCase(marca));
+		
+		List<Movil> allByMarca = (marcaBuscada.isPresent())?  movilRepo.findAllByMarca(marcaBuscada.get()):new ArrayList<>();
 		
 		return allByMarca;
 

@@ -1,4 +1,4 @@
-//package com.adorno.configuration.security;
+package com.adorno.configurations.security;
 //
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@
 //import com.adorno.services.UserDetailsServiceImpl;
 //
 //import lombok.extern.slf4j.Slf4j;
-//// Esto es Chuclado tal cual de jose
+////Esto es Chuclado tal cual de jose
 //@Configuration
 //@Slf4j
 //@EnableMethodSecurity

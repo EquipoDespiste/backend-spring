@@ -15,7 +15,7 @@ public class Anuncio {
 	private String descripcion;
 	
 	// ESTO ES PROVISIONAL
-	private String estado;
+	private EstadoMovil estado;
 	private String tipoAnuncio;
 	
 }

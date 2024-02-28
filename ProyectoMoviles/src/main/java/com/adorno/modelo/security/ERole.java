@@ -16,6 +16,10 @@ public enum ERole {
 		return Arrays.asList(ERole.values()).stream().filter(e-> e.name.equals(role)).findFirst();
 	}
 
+	/*
+	 * Valida si el Array de String son roles, si alguna no es directamente sale
+	 * Nota: no le veo por ningun lado un ignoreCase(), quiere que siempre sea mayuscuals ? 
+	 */
 	public static boolean  validate(String[] t) {
 		for (String string : t) {
 			if(getRole(string).isEmpty()) return false;

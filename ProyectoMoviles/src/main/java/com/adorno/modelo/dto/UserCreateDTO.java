@@ -1,5 +1,5 @@
 package com.adorno.modelo.dto;
-
-public class UserCreateDTO {
-
-}
+/*
+ * Objeto inmutable
+ */
+public record UserCreateDTO(String email, String username, String password, String... roles) {}

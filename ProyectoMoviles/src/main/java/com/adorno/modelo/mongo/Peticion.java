@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Document(collection = "peticiones")
+
 public abstract class Peticion {
 
 	@Id

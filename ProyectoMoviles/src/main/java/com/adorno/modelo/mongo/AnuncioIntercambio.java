@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnuncioIntercambioCambio extends Anuncio{
+public class AnuncioIntercambio extends Anuncio{
 private Float vidaBateria;
 private List<PeticionIntercambio> peticiones;
 }

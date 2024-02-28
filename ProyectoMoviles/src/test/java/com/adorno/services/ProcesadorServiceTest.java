@@ -40,7 +40,7 @@ class ProcesadorServiceTest {
 	void testFindAll() {
 		assertTrue(service.findAll()!=null);
 	}
-
+	
 	@Test
 	void testAddAll() {
 		List<Procesador>lista=new ArrayList<>();

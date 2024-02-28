@@ -14,6 +14,7 @@ public class DimensionPopulate implements Populate{
 	
 	public DimensionPopulate(DimensionService dimensionService) {
 		super();
+		System.err.println("DimensionPopulate: Entro en constructor");
 		this.dimensionService = dimensionService;
 		initPopulate();
 	}

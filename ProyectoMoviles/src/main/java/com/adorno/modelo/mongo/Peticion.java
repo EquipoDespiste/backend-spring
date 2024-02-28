@@ -23,4 +23,5 @@ public abstract class Peticion {
 	//@DBRef(lazy = true) // esto es para la bidireccionalidad
 	//private List<User> usuarios;
 	
+	
 }

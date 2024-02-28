@@ -12,7 +12,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "AnuncioIntercambio")
-public class AnuncioIntercambio extends Anuncio{
-private Float vidaBateria;
-private List<PeticionIntercambio> peticiones;
+public class AnuncioIntercambio extends Anuncio {
+	private Float vidaBateria;
+	private List<PeticionIntercambio> peticiones;
+	
+	
+	public AnuncioIntercambio(Long idMovil, String descripcion, EstadoMovil estado, String tipoAnuncio,Float vidaBateria, List<PeticionIntercambio> peticiones) {
+		super(idMovil, descripcion, estado, tipoAnuncio);
+		this.vidaBateria=vidaBateria;
+		this.peticiones=peticiones;
+	}
+	
+	
 }

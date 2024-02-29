@@ -11,7 +11,7 @@ import com.adorno.modelo.mongo.AnuncioIntercambio;
 
 public interface IAnuncioIntercambioRepositorio extends MongoRepository<AnuncioIntercambio, ObjectId> {
 
-	public List<Anuncio> findByTipo();
+	public List<AnuncioIntercambio> findByVidaBateria(Float vidaBateria);
 	
 	// no se que mas metodos añadir mis niños
 }

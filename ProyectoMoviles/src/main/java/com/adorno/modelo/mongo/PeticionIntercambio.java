@@ -14,12 +14,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Document(collection = "PeticionIntercambio")
 public class PeticionIntercambio extends Peticion {
-	private Long idAnuncioInteresado;
+	private ObjectId idAnuncioInteresado;
 
-	public PeticionIntercambio(Long id_user, ObjectId id_peticion, String oferta, LocalDate fecha_creacion, Long idAnuncioInteresado) {
+	public PeticionIntercambio(Long id_user, ObjectId id_peticion, String oferta, LocalDate fecha_creacion, ObjectId idAnuncioInteresado) {
 		super(id_user, id_peticion, oferta, fecha_creacion);
 		this.idAnuncioInteresado=idAnuncioInteresado;
 	}
+	
+	
 	
 	
 

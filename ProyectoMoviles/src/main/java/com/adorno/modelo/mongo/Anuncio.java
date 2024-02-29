@@ -13,7 +13,7 @@ public abstract class Anuncio {
 	private ObjectId id;
 	private Long idMovil;
 	private String descripcion;
-	
+	private EstadoAnuncio estadoAnuncio;
 	// ESTO ES PROVISIONAL
 	private EstadoMovil estado;
 	private String tipoAnuncio;

@@ -34,27 +34,41 @@ public class UserService {
 	public boolean createUser(UserCreateDTO userCreateDTO) {
 		UserEntity user = userCreateDTO2UserMapper.mapToEntity(userCreateDTO);
 		if (userCreateDTO.roles() != null) {
-			Set<RoleEntity> roles = fillRoles(userCreateDTO.roles());
-			user.setRoles(roles);
+			Optional<Set<RoleEntity>> roles = fillRoles(userCreateDTO.roles());
+			if(roles.isPresent())
+				user.setRoles(roles.get());
 		}
-		if (userRepository.save(user) != null) {
+		// Esta parte no me cuadra, no se porque Jose lo hace asi..
+		// Segun la Doc, nunca retorna un valor null el metodo .save()
+		// En todo caso si no se guarda tira un Error creo
+//		if (userRepository.save(user) != null) {
+//			return true;
+//		}
+		
+		// TODO Si da tiempo que retorne Response.ok Response.bad
+		try {
+			this.userRepository.save(user);
 			return true;
+		}catch (Exception e) {			
+			return false;
 		}
-		return false;
 	}
 
-	private Set<RoleEntity> fillRoles(String[] t) {
+	private Optional<Set<RoleEntity>> fillRoles(String[] t) {
 		if (ERole.validate(t)) {
-			return Arrays.asList(t).stream()
+			return Optional.of(
+					Arrays.asList(t).stream()
 					.map((rol) -> {
 							ERole rolresult = ERole.getRole(rol).get();
 							Optional<RoleEntity> byName = roleRepository.findByName(rolresult);
 							RoleEntity roleEntity = byName.get();
 							return roleEntity;
 						})
-					.collect(Collectors.toSet());
+					.collect(Collectors.toSet())
+					);
 		}
-		return null;
+		// No se si asi queda feo
+		return Optional.of(null);
 	}
 
 	public boolean delete(String username) {

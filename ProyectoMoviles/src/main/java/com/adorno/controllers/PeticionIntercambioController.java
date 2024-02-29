@@ -58,9 +58,9 @@ public class PeticionIntercambioController {
 	}
 	
 	@GetMapping("/findByPeticionUsuario")
-	public ResponseEntity<Optional<PeticionIntercambio>> getPeticionByUsuario(UserEntity usuario){
+	public ResponseEntity<Optional<List<PeticionIntercambio>>> getPeticionByUsuario(UserEntity usuario){
 	
-		Optional<PeticionIntercambio> peticionesUsuario =  peticionIntercambioService.findByPeticionUser(usuario);
+		Optional<List<PeticionIntercambio>> peticionesUsuario =  peticionIntercambioService.findByPeticionUser(usuario);
 		
 		return ResponseEntity.ok().body(peticionesUsuario);
 		

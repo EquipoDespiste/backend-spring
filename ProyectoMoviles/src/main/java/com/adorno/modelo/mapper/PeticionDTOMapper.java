@@ -10,7 +10,7 @@ public class PeticionDTOMapper implements IMapper<PeticionDTO, Peticion>{
 	
 		return PeticionDTO.builder()
 				.id_user(k.getId_user())
-				.id_peticion(k.getReferencia())
+				.referencia(k.getReferencia())
 				.oferta(k.getOferta())
 				.fecha_creacion(k.getFecha_creacion())
 				.build();

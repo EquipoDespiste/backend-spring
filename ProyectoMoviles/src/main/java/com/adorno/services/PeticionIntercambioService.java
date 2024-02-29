@@ -16,8 +16,8 @@ public class PeticionIntercambioService implements Services<PeticionIntercambio>
 	private final IPeticionIntercambioRepository peticionIntercambioRepo;
 	private final PeticionDTOMapper peticionDTOmapper;
 	
-	
-	
+
+
 	public PeticionIntercambioService(IPeticionIntercambioRepository peticionIntercambioRepo,
 			PeticionDTOMapper peticionDTOmapper) {
 		super();
@@ -32,15 +32,28 @@ public class PeticionIntercambioService implements Services<PeticionIntercambio>
 
 	@Override
 	public boolean delete(long id) {
-	//	ObjectId idd=id;
-		Optional<PeticionIntercambio> peticionIntercambio= this.peticionIntercambioRepo.findById(id);
+		String idd=String.valueOf(id);
+		ObjectId idObject= new ObjectId(idd);
+		Optional<PeticionIntercambio> peticionIntercambio= this.peticionIntercambioRepo.findById(idObject);
+	
+		if(peticionIntercambio.isPresent()) {
+			this.peticionIntercambioRepo.delete(peticionIntercambio.get());
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public Optional<PeticionIntercambio> getById(long id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		String idd=String.valueOf(id);
+		ObjectId idObject= new ObjectId(idd);
+		Optional<PeticionIntercambio> peticionIntercambio= this.peticionIntercambioRepo.findById(idObject);
+		Optional<PeticionIntercambio>peticion=Optional.empty();
+		
+		if(peticionIntercambio.isPresent()) {
+			peticion = Optional.of(peticionIntercambio.get());	
+		}
+		return peticion;
 	}
 
 	@Override

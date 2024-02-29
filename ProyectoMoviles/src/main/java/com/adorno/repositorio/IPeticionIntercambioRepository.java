@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.adorno.modelo.mongo.PeticionIntercambio;
 
-public interface IPeticionIntercambioRepositorio extends MongoRepository<PeticionIntercambio, ObjectId> {
+public interface IPeticionIntercambioRepository extends MongoRepository<PeticionIntercambio, ObjectId> {
 
 //	public boolean guardarSolicitud(Peticion p);
 //	//el parametro del tipo no lo sabemos aun, hace falta insetar
@@ -15,9 +15,5 @@ public interface IPeticionIntercambioRepositorio extends MongoRepository<Peticio
 //	public List<Peticion>consultarEstado();
 //	public List<Peticion> consultarPeticionesContestadas();
 //	public List<Peticion> consultarPeticionesNoContestadas();
-	
-	
-	
-	
 	
 }

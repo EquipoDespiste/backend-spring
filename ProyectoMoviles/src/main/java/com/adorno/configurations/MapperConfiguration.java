@@ -5,7 +5,9 @@ import org.springframework.context.annotation.Configuration;
 
 import com.adorno.modelo.mapper.MovilDetalladoDTOMapper;
 import com.adorno.modelo.mapper.MovilResumenDTOMapper;
+import com.adorno.modelo.mapper.PeticionDTOMapper;
 import com.adorno.modelo.mapper.UserMapper;
+import com.adorno.modelo.mongo.AnuncioVenta;
 
 @Configuration
 public class MapperConfiguration {
@@ -24,5 +26,10 @@ public class MapperConfiguration {
 	public UserMapper getUserMApper() {
 		return new UserMapper();
 	}
+	@Bean
+	public PeticionDTOMapper getPeticionDTOMapper() {
+		return new PeticionDTOMapper();
+	}
+	
 
 }

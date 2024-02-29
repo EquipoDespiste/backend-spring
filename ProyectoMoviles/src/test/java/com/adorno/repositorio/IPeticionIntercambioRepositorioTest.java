@@ -17,7 +17,7 @@ import com.adorno.modelo.mongo.PeticionIntercambio;
 class IPeticionIntercambioRepositorioTest {
 	
 	@Autowired
-	IPeticionIntercambioRepositorio peticionIntercambioRepo;
+	IPeticionIntercambioRepository peticionIntercambioRepo;
 	@Autowired
 	IAnuncioIntercambioRepositorio anuncioIntercambioRepositorio;
 

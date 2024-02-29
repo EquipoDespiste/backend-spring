@@ -1,4 +1,104 @@
 package com.adorno.configurations.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class SecurityConfig {
+
+	/*
+	 * Apuntes:
+	 * - Porque quitamos csrf:
+	 * 		 Si estás construyendo una API RESTful
+	 *   	donde las solicitudes no se realizan a través de formularios HTML, 
+	 *   	sino mediante solicitudes AJAX o clientes que consumen la API 
+	 *   	directamente, puedes desactivar CSRF ya que la amenaza CSRF se 
+	 *   	reduce significativamente.
+	 * - Pasos:
+	 * 1) Diseñar filtro de seguridad: SecurityFilterChain
+	 * 2) Manager de Usuarios: UserDetailsService
+	 * 3) Manager de autentificacion: AuthenticationManager
+	 */
+	
+	@Bean
+	SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity) throws Exception {
+		// El parametro HttpSecurity es un bean propio de Spring Security,
+		// sera Spring quien lo inyecte
+		
+		return httpSecurity
+				.csrf( (csf)-> csf.disable())
+				.authorizeHttpRequests( (auth)-> {
+						// Cualquiera puede acceder ( Login aqui)
+						auth.requestMatchers("users/hello").permitAll();
+						// Cualquiero otra peticion -> autentificacion
+						auth.anyRequest().authenticated();
+					})
+				.sessionManagement((session) -> {
+					// Para ver como controlamos las sesiones
+					session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+				})
+				.httpBasic(Customizer.withDefaults()) // Esto es momentaneo
+				.build();
+	}
+	
+	/*
+	 *  Crear un Bean que nos den detalles del usuario
+	 *  Necesitamos un Manager para que identifique al usuario
+	 *  este es InMemoryUserDetailsManager, y es el servicio de detallesUsuario
+	 *  de Spring.
+	 *  
+	 *  Este servicion usara UserDetails para definir usuarios y manejar sus datos.
+	 *   
+	 */
+	@Bean
+	UserDetailsService userDetailsService() {
+		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+		// este user es de .security.core.userdetails.User;
+		UserDetails user = User.withUsername("santi")
+								.password("1234")
+								.roles()
+								.build();
+		manager.createUser(user);
+		return manager;
+	}
+	
+	/*
+	 * Definir AuthenticationManager del paquete (.security.authentication.AuthenticationManager;)
+	 * - Cuando un usuario intente autenticarse en el sistema, nos dara sus
+	 * credenciales (username/password) y este manager usara el USerDetailsManager
+	 * para saber si hay un usuario con esas credenciales en el sistema
+	 */
+	@Bean
+	AuthenticationManager authenticationManager(HttpSecurity httpSecurity, PasswordEncoder passwordEncoder) throws Exception {
+		
+		return httpSecurity
+				// Tenemos que utilizar este builder para tener el AuthenticationManager
+				.getSharedObject(AuthenticationManagerBuilder.class) 
+				.userDetailsService(userDetailsService()) 
+				.passwordEncoder(passwordEncoder)
+				.and() // de Momento luego cambiar, es para probar
+				.build();
+	}
+	
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		return PlainTextPasswordEncoder.getInstance();
+	}
+	
+}
+
+
 //
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;

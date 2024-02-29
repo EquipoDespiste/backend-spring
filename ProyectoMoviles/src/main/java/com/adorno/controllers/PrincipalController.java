@@ -31,7 +31,7 @@ public class PrincipalController {
 		return "Hola que tal?";
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("helloSecured")
 	public String helloS() {
 		return "SEGURO Hola que tal?";

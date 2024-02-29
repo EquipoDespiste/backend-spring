@@ -13,10 +13,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
+
 public class PeticionDTO {
 
 	private Long id_user;
-	private ObjectId id_peticion;
+	private ObjectId referencia;
 	private String oferta;
 	private LocalDate fecha_creacion;
 	

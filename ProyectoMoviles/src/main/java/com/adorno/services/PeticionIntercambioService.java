@@ -3,8 +3,11 @@ package com.adorno.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.adorno.modelo.mongo.PeticionIntercambio;
+import org.springframework.stereotype.Service;
 
+import com.adorno.modelo.mongo.PeticionIntercambio;
+import com.adorno.modelo.sqlSecurity.UserEntity;
+@Service
 public class PeticionIntercambioService implements Services<PeticionIntercambio> {
 
 	@Override
@@ -37,43 +40,12 @@ public class PeticionIntercambioService implements Services<PeticionIntercambio>
 		return false;
 	}
 
+	public Optional<PeticionIntercambio> findByPeticionUser(UserEntity user){
+		
+		
+		return null;
+		
+	}
 
-	
-
-//	@Override
-//	public boolean guardarSolicitud(Peticion p) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-//
-//	@Override
-//	public List<Peticion> consultarPorTipo() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<Peticion> consultarPorFechas(LocalDate fechaInicial, LocalDate fechaFinal) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<Peticion> consultarEstado() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<Peticion> consultarPeticionesContestadas() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<Peticion> consultarPeticionesNoContestadas() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 }

@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import com.adorno.modelo.mongo.AnuncioVenta;
+import com.adorno.modelo.mongo.EstadoAnuncio;
 import com.adorno.repositorio.IAnuncioVentaRepositorio;
 
 @Service
@@ -52,6 +53,11 @@ public class AnuncioVentaService {
             	anuncioVentaRepositorio.save(anuncio);
         });
 		return true;
+	}
+	
+	public List<AnuncioVenta> findAllEstadoAnuncio(EstadoAnuncio estadoAnuncio){
+		return anuncioVentaRepositorio.findAllByEstadoAnuncios(estadoAnuncio);
+		
 	}
 	
 	

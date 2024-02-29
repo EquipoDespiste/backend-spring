@@ -7,6 +7,7 @@ import com.adorno.modelo.mapper.MovilDetalladoDTOMapper;
 import com.adorno.modelo.mapper.MovilResumenDTOMapper;
 import com.adorno.modelo.mapper.PeticionDTOMapper;
 import com.adorno.modelo.mapper.UserMapper;
+import com.adorno.modelo.mongo.AnuncioVenta;
 
 @Configuration
 public class MapperConfiguration {
@@ -29,5 +30,6 @@ public class MapperConfiguration {
 	public PeticionDTOMapper getPeticionDTOMapper() {
 		return new PeticionDTOMapper();
 	}
+	
 
 }

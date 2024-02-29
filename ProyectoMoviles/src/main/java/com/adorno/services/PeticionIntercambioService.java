@@ -2,12 +2,14 @@ package com.adorno.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import com.adorno.modelo.mapper.PeticionDTOMapper;
 import com.adorno.modelo.mongo.PeticionIntercambio;
+import com.adorno.modelo.sql.Marca;
 import com.adorno.modelo.sqlSecurity.UserEntity;
 import com.adorno.repositorio.IPeticionIntercambioRepository;
 @Service
@@ -58,20 +60,23 @@ public class PeticionIntercambioService implements Services<PeticionIntercambio>
 
 	@Override
 	public List<PeticionIntercambio> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.peticionIntercambioRepo.findAll().stream()
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public boolean addAll(List<PeticionIntercambio> t) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		return this.peticionIntercambioRepo.saveAll(t.stream()
+				.collect(Collectors.toList())) != null;
+}
 
-	public Optional<PeticionIntercambio> findByPeticionUser(UserEntity user){
+	public Optional<List<PeticionIntercambio>> findByPeticionUser(UserEntity user){
+		Optional<List<PeticionIntercambio>>peticionesUser= Optional.of( peticionIntercambioRepo.findAll()
+				.stream().filter(peti->peti.getUsuarios().equals(user))
+				.collect(Collectors.toList()));
 		
 		
-		return null;
+		return peticionesUser;
 		
 	}
 

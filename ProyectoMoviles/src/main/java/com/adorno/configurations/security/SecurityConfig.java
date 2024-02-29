@@ -10,6 +10,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -64,14 +65,17 @@ public class SecurityConfig {
 	@Bean
 	UserDetailsService userDetailsService() {
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+		// Cuando implementaod encriptador, debemos encriptar la contraseña
+		String password = passwordEncoder().encode("1234");
 		// este user es de .security.core.userdetails.User;
 		UserDetails user = User.withUsername("santi")
-								.password("1234")
+								.password(password)
 								.roles()
 								.build();
 		manager.createUser(user);
 		return manager;
 	}
+
 	
 	/*
 	 * Definir AuthenticationManager del paquete (.security.authentication.AuthenticationManager;)
@@ -90,11 +94,32 @@ public class SecurityConfig {
 				.and() // de Momento luego cambiar, es para probar
 				.build();
 	}
-	
+	// Codificador (Encriptador)
 	@Bean
 	PasswordEncoder passwordEncoder() {
-		return PlainTextPasswordEncoder.getInstance();
+		return new BCryptPasswordEncoder();
 	}
+	
+	// Para probar (Encriptador Falso)
+//	@Bean
+//	PasswordEncoder passwordEncoder() {
+//		return PlainTextPasswordEncoder.getInstance();
+//	}
+	// UserDetailsService sin criptar
+//	@Bean
+//	UserDetailsService userDetailsService() {
+//		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//		// Cuando implementaod encriptador, debemos encriptar la contraseña
+//		String password = "1234";
+//		// este user es de .security.core.userdetails.User;
+//		UserDetails user = User.withUsername("santi")
+//				.password(password)
+//				.roles()
+//				.build();
+//		manager.createUser(user);
+//		return manager;
+//	}
+
 	
 }
 

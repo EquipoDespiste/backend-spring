@@ -10,7 +10,7 @@ import com.adorno.modelo.mongo.AnuncioVenta;
 import com.adorno.modelo.mongo.EstadoAnuncio;
 public interface IAnuncioVentaRepositorio extends MongoRepository<AnuncioVenta, ObjectId> {
 	
-	public List<AnuncioVenta> findAllByEstadoAnuncios(EstadoAnuncio estadoAnuncio);
+	public List<AnuncioVenta> findAllByEstadoAnuncio(EstadoAnuncio estadoAnuncio);
 	public void deleteById(ObjectId id);
 	public Optional<AnuncioVenta> findById(ObjectId id);
 	public List<AnuncioVenta> findAllOrderByPrecio();

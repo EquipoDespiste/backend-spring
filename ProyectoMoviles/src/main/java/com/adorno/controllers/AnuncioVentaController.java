@@ -38,8 +38,9 @@ public class AnuncioVentaController {
 		return Optional.of(new ResponseEntity<AnuncioVenta>(anuncioVentaService.getById(id).get(), HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 	
-	@GetMapping("/find/{id}")
+	@GetMapping("/find-esatadoAnuncio/{estadoAnuncio}")
 	public ResponseEntity<List<AnuncioVenta>> getAllEstadoAnuncio(@PathVariable EstadoAnuncio estadoAnuncio){
+		
 		return Optional.of(new ResponseEntity<List<AnuncioVenta>>(anuncioVentaService.findAllEstadoAnuncio(estadoAnuncio),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 		
 	}

@@ -56,7 +56,7 @@ public class AnuncioVentaService {
 	}
 	
 	public List<AnuncioVenta> findAllEstadoAnuncio(EstadoAnuncio estadoAnuncio){
-		return anuncioVentaRepositorio.findAllByEstadoAnuncios(estadoAnuncio);
+		return anuncioVentaRepositorio.findAllByEstadoAnuncio(estadoAnuncio);
 		
 	}
 	

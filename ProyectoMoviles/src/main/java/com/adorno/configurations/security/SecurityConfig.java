@@ -15,7 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Configuration
+@Slf4j
 public class SecurityConfig {
 
 	/*
@@ -73,6 +76,8 @@ public class SecurityConfig {
 								.roles()
 								.build();
 		manager.createUser(user);
+		log.info("SecurityConfig: "+ user.getPassword());
+//		System.out.println("SecurityConfig: "+ user.getPassword());
 		return manager;
 	}
 
@@ -99,7 +104,7 @@ public class SecurityConfig {
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+	// --------------- Antiguo -------------
 	// Para probar (Encriptador Falso)
 //	@Bean
 //	PasswordEncoder passwordEncoder() {
@@ -124,7 +129,7 @@ public class SecurityConfig {
 }
 
 
-//
+//-------------- Jose -----------------------------
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.authentication.AuthenticationManager;

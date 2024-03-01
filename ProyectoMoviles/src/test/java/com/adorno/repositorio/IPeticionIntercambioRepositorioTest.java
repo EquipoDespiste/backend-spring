@@ -34,7 +34,7 @@ class IPeticionIntercambioRepositorioTest {
 	anuncioIntercambioRepositorio.save(new AnuncioIntercambio(1l, "hola", EstadoMovil.intacto, "intercambio", 95f, new ArrayList<PeticionIntercambio>()));
 	AnuncioIntercambio anuncio = anuncioIntercambioRepositorio.findAll().get(0);
 	
-	PeticionIntercambio peticion = new PeticionIntercambio(1l, anuncio.getId(), "oferta", LocalDate.now(), anuncio.getId());
+	PeticionIntercambio peticion = new PeticionIntercambio("username", anuncio.getId(), "oferta", LocalDate.now(), anuncio.getId());
 	peticionIntercambioRepo.save(peticion);
 	
 	

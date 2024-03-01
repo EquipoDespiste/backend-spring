@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 public class PeticionVenta extends Peticion {
 	private Float precioPropuesto;
 
-	public PeticionVenta(Long id_user, ObjectId id_peticion, String oferta, LocalDate fecha_creacion, Float precioPropuesto) {
-		super(id_user, id_peticion, oferta, fecha_creacion);
+	public PeticionVenta(String username, ObjectId id_peticion, String oferta, LocalDate fecha_creacion, Float precioPropuesto) {
+		super(username, id_peticion, oferta, fecha_creacion);
 		this.precioPropuesto=precioPropuesto;
 	}
 	

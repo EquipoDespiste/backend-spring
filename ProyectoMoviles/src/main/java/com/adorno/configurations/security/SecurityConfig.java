@@ -1,5 +1,6 @@
 package com.adorno.configurations.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,14 +14,25 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.adorno.security.jwt.JwtAuthenticationFilter;
+import com.adorno.security.jwt.JwtUtils;
+import com.adorno.services.UserDetailsServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @Slf4j
 public class SecurityConfig {
-
+	
+	// Se que no te gusta Autowired , pero me daba error en final
+	@Autowired
+	private  UserDetailsServiceImpl userDetailsServiceImpl;
+	@Autowired
+	private  JwtUtils jwtUtils;
+	
 	/*
 	 * Apuntes:
 	 * - Porque quitamos csrf:
@@ -36,11 +48,20 @@ public class SecurityConfig {
 	 */
 	
 	@Bean
-	SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity) throws Exception {
-		// El parametro HttpSecurity es un bean propio de Spring Security,
-		// sera Spring quien lo inyecte
+	SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity, AuthenticationManager authenticationManager ) 
+			throws Exception {
+		/*
+		 *  El parametro HttpSecurity es un bean propio de Spring Security,
+		 *  sera Spring quien lo inyecte
+		 */
 		
-		return httpSecurity
+		// Aqui vamos a poner la autentificacion de jwt
+		JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(this.jwtUtils);
+		jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
+		jwtAuthenticationFilter.setFilterProcessesUrl("/login");
+		
+		// Aqui el resto de la autentificacion
+		DefaultSecurityFilterChain httpSec = httpSecurity
 				.csrf( (csf)-> csf.disable())
 				.authorizeHttpRequests( (auth)-> {
 						// Cualquiera puede acceder ( Login aqui)
@@ -52,8 +73,11 @@ public class SecurityConfig {
 					// Para ver como controlamos las sesiones
 					session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 				})
-				.httpBasic(Customizer.withDefaults()) // Esto es momentaneo
+				//.httpBasic(Customizer.withDefaults()) // Esto es momentaneo
+				.addFilter(jwtAuthenticationFilter) // una vez autenticado 
 				.build();
+		
+		return httpSec;
 	}
 	
 	/*
@@ -77,7 +101,6 @@ public class SecurityConfig {
 								.build();
 		manager.createUser(user);
 		log.info("SecurityConfig: "+ user.getPassword());
-//		System.out.println("SecurityConfig: "+ user.getPassword());
 		return manager;
 	}
 
@@ -94,7 +117,7 @@ public class SecurityConfig {
 		return httpSecurity
 				// Tenemos que utilizar este builder para tener el AuthenticationManager
 				.getSharedObject(AuthenticationManagerBuilder.class) 
-				.userDetailsService(userDetailsService()) 
+				.userDetailsService(userDetailsServiceImpl) 
 				.passwordEncoder(passwordEncoder)
 				.and() // de Momento luego cambiar, es para probar
 				.build();
@@ -105,6 +128,26 @@ public class SecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 	// --------------- Antiguo -------------
+//	@Bean
+//	SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity) throws Exception {
+//		// El parametro HttpSecurity es un bean propio de Spring Security,
+//		// sera Spring quien lo inyecte
+//		
+//		return httpSecurity
+//				.csrf( (csf)-> csf.disable())
+//				.authorizeHttpRequests( (auth)-> {
+//						// Cualquiera puede acceder ( Login aqui)
+//						auth.requestMatchers("users/hello").permitAll();
+//						// Cualquiero otra peticion -> autentificacion
+//						auth.anyRequest().authenticated();
+//					})
+//				.sessionManagement((session) -> {
+//					// Para ver como controlamos las sesiones
+//					session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//				})
+//				.httpBasic(Customizer.withDefaults()) // Esto es momentaneo
+//				.build();
+//	}
 	// Para probar (Encriptador Falso)
 //	@Bean
 //	PasswordEncoder passwordEncoder() {

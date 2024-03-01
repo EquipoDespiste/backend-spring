@@ -1,5 +1,6 @@
 package com.adorno.services;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// Obtener userEntity de la bbdd y sus roles,
-		UserEntity user = this.userRepo.findByUsername(username)
+		UserEntity user = Optional.of(this.userRepo.findByUsername(username).get(0))
 					.orElseThrow(() -> new  UsernameNotFoundException("usuario existente"));
 		// Conviertiendo roles de UserEntity a la Clase Roles de Spring Security
 		Set<SimpleGrantedAuthority> setRoles =	user.getRoles().stream()

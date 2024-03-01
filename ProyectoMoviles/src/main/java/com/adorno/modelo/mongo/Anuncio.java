@@ -18,6 +18,7 @@ public abstract class Anuncio {
 	// ESTO ES PROVISIONAL
 	private EstadoMovil estado;
 	private String tipoAnuncio;
+
 	public Anuncio(Long idMovil, String descripcion, EstadoMovil estado, String tipoAnuncio) {
 		super();
 		this.idMovil = idMovil;
@@ -25,7 +26,5 @@ public abstract class Anuncio {
 		this.estado = estado;
 		this.tipoAnuncio = tipoAnuncio;
 	}
-	
-	
-	
+
 }

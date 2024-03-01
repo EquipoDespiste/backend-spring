@@ -58,9 +58,9 @@ public ResponseEntity<Boolean> delete(@PathVariable ObjectId id) {
 }
 
 @GetMapping("/findByPeticionUsuario")
-public ResponseEntity<Optional<List<PeticionVenta>>> getPeticionByUsuario(@RequestBody UserEntity usuario){
+public ResponseEntity<List<PeticionVenta>> getPeticionByUsuario(@RequestBody String username){
 
-	Optional<List<PeticionVenta>> peticionesUsuario =  peticionVentaService.findByPeticionUser(usuario);
+	List<PeticionVenta> peticionesUsuario =  peticionVentaService.findByPeticionUser(username);
 	
 	return ResponseEntity.ok().body(peticionesUsuario);
 	

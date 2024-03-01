@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 public class PeticionIntercambio extends Peticion {
 	private ObjectId idAnuncioInteresado;
 
-	public PeticionIntercambio(Long id_user, ObjectId id_peticion, String oferta, LocalDate fecha_creacion, ObjectId idAnuncioInteresado) {
-		super(id_user, id_peticion, oferta, fecha_creacion);
+	public PeticionIntercambio(String username, ObjectId id_peticion, String oferta, LocalDate fecha_creacion, ObjectId idAnuncioInteresado) {
+		super(username, id_peticion, oferta, fecha_creacion);
 		this.idAnuncioInteresado=idAnuncioInteresado;
 	}
 	

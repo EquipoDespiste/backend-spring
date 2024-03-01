@@ -30,7 +30,7 @@ public class PeticionIntercambioServiceTest {
 		ObjectId idanucio= new ObjectId(id_anuvio);
 		
 		mongoTemplate.getCollection("peticionintercambio").drop();
-		assertTrue(peticionIntercambioService.add(new PeticionIntercambio(1l, idObject, "intercambio",LocalDate.now(), idanucio)));
+		assertTrue(peticionIntercambioService.add(new PeticionIntercambio("username", idObject, "intercambio",LocalDate.now(), idanucio)));
 	}
 
 }

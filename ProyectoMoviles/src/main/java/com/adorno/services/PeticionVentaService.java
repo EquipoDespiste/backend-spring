@@ -63,14 +63,17 @@ public class PeticionVentaService {
 
 
 	
-	public Optional<List<PeticionVenta>> findByPeticionUser(UserEntity user){
-		Optional<UserEntity> usuario=this.userRepository.findByUsername(user.getUsername());
-		if(usuario.isPresent()) {
-			return  Optional.of( peticionVentarepo.findAll()
-					.stream().filter(peti->peti.getUsuarios().equals(user.getUsername()))
-					.collect(Collectors.toList()));
-		}
-		return Optional.ofNullable(null);
+	public List<PeticionVenta> findByPeticionUser(String username){
+//		Optional<UserEntity> usuario=this.userRepository.findByUsername(username);
+//		if(usuario.isPresent()) {
+//			return  Optional.of( peticionVentarepo.findAll()
+//					.stream().filter(peti->peti.getUsuarios().equals(username))
+//					.collect(Collectors.toList()));
+//		}
+//		return Optional.ofNullable(null);
+		
+//		teoricamente esto deberia de ir
+		return peticionVentarepo.findAllByUsername(username);
 		
 	}
 	

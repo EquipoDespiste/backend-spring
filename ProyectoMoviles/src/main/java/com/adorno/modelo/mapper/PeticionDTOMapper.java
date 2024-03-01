@@ -9,7 +9,7 @@ public class PeticionDTOMapper implements IMapper<PeticionDTO, Peticion>{
 	public PeticionDTO mapToDTO(Peticion k) {
 	
 		return PeticionDTO.builder()
-				.id_user(k.getId_user())
+				.username(k.getUsername())
 				.referencia(k.getReferencia())
 				.oferta(k.getOferta())
 				.fecha_creacion(k.getFecha_creacion())

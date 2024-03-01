@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 
 public class PeticionDTO {
 
-	private Long id_user;
+	private String username;
 	private ObjectId referencia;
 	private String oferta;
 	private LocalDate fecha_creacion;

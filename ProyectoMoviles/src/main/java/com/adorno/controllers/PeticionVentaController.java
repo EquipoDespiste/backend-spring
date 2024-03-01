@@ -48,7 +48,7 @@ public ResponseEntity<Boolean> insert(@RequestBody PeticionVenta t) {
 }
 
 @DeleteMapping("/delete/{id}")
-public ResponseEntity<Boolean> delete(@PathVariable ObjectId id) {
+public ResponseEntity<Boolean> delete(@PathVariable String id) {
 	boolean idDelete= false;
 	if(idDelete = peticionVentaService.delete(id)) {
 		return ResponseEntity.ok().body(idDelete);
@@ -60,7 +60,7 @@ public ResponseEntity<Boolean> delete(@PathVariable ObjectId id) {
 @GetMapping("/findByPeticionUsuario")
 public ResponseEntity<List<PeticionVenta>> getPeticionByUsuario(@RequestBody String username){
 
-	List<PeticionVenta> peticionesUsuario =  peticionVentaService.findByPeticionUser(username);
+	List<PeticionVenta> peticionesUsuario =  peticionVentaService.getAllByUser(username);
 	
 	return ResponseEntity.ok().body(peticionesUsuario);
 	

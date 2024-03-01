@@ -14,5 +14,5 @@ public interface IAnuncioVentaRepositorio extends MongoRepository<AnuncioVenta, 
 	public List<AnuncioVenta> findAllByEstadoAnuncio(EstadoAnuncio estadoAnuncio);
 	public void deleteById(ObjectId id);
 	public List<AnuncioVenta> findAllOrderByPrecio();
-	public List<AnuncioIntercambio> findAllByUsername(String username);
+	public List<AnuncioVenta> findAllByUsername(String username);
 }

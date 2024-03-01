@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adorno.modelo.mongo.AnuncioVenta;
 import com.adorno.modelo.mongo.PeticionIntercambio;
 import com.adorno.modelo.sqlSecurity.UserEntity;
 import com.adorno.services.PeticionIntercambioService;
@@ -48,7 +49,7 @@ public class PeticionIntercambioController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Boolean> delete(@PathVariable long id) {
+	public ResponseEntity<Boolean> delete(@PathVariable String id) {
 		boolean idDelete= false;
 		if(idDelete = peticionIntercambioService.delete(id)) {
 			return ResponseEntity.ok().body(idDelete);
@@ -57,12 +58,9 @@ public class PeticionIntercambioController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(idDelete);
 	}
 	
-	@GetMapping("/findByPeticionUsuario")
-	public ResponseEntity<Optional<List<PeticionIntercambio>>> getPeticionByUsuario(UserEntity usuario){
-	
-		Optional<List<PeticionIntercambio>> peticionesUsuario =  peticionIntercambioService.findByPeticionUser(usuario);
-		
-		return ResponseEntity.ok().body(peticionesUsuario);
+	@GetMapping("/findByUsername/{username}")
+	public ResponseEntity<List<PeticionIntercambio>> getPeticioneUser(@PathVariable String username){
+		return 	Optional.of(new ResponseEntity<List<PeticionIntercambio>>(peticionIntercambioService.getAllByUser(username),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 		
 	}
 }

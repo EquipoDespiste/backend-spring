@@ -45,6 +45,8 @@ public class SecurityConfig {
 				.authorizeHttpRequests( (auth)-> {
 						// Cualquiera puede acceder ( Login aqui)
 						auth.requestMatchers("users/hello").permitAll();
+						auth.requestMatchers("PeticionVentaController/delete/{id}").permitAll();
+						auth.requestMatchers("PeticionVentaController/insertar").permitAll();
 						// Cualquiero otra peticion -> autentificacion
 						auth.anyRequest().authenticated();
 					})

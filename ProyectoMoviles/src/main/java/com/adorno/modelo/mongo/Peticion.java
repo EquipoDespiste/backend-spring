@@ -27,8 +27,11 @@ public abstract class Peticion {
 	private String oferta;
 
 	private LocalDate fecha_creacion;
-	 @DBRef(lazy = true) // esto es para la bidireccionalidad
-	 private List<UserEntity> usuarios;
+
+	
+	
+//	 @DBRef(lazy = true) // esto es para la bidireccionalidad
+//	 private List<UserEntity> usuarios;
 
 	public Peticion(String username, ObjectId referencia, String oferta, LocalDate fecha_creacion) {
 		super();

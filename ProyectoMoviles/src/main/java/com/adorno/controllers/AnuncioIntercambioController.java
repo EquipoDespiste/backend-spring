@@ -52,4 +52,9 @@ public class AnuncioIntercambioController {
 	public ResponseEntity<Boolean> delete(@PathVariable ObjectId id) {
 		return Optional.of(new ResponseEntity<Boolean>(anuncioIntercambioService.delete(id),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 	}
+	
+	@GetMapping("findByUsername/{username}")
+	public ResponseEntity<List<AnuncioIntercambio>> getAnunciosUser(String username){
+		return Optional.of(new ResponseEntity<List<AnuncioIntercambio>>(anuncioIntercambioService.getAllByUsername(username),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
+	}
 }

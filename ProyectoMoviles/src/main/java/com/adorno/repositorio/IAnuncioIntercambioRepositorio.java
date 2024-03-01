@@ -13,6 +13,7 @@ import com.adorno.modelo.mongo.EstadoAnuncio;
 public interface IAnuncioIntercambioRepositorio extends MongoRepository<AnuncioIntercambio, ObjectId> {
 
 	public List<AnuncioIntercambio> findByVidaBateria(Float vidaBateria);
+	public List<AnuncioIntercambio> findAllByUsername(String username);
 	// no se que mas metodos añadir mis niños
 	//public List<AnuncioIntercambio> findByEstadoAnuncio(EstadoAnuncio estadoAnuncio);
 }

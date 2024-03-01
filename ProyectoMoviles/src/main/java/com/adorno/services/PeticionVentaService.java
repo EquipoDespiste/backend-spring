@@ -1,15 +1,15 @@
 package com.adorno.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import com.adorno.modelo.mongo.PeticionIntercambio;
 import com.adorno.modelo.mongo.PeticionVenta;
-import com.adorno.modelo.sqlSecurity.UserEntity;
+import com.adorno.repositorio.IAnuncioVentaRepositorio;
 import com.adorno.repositorio.IPeticionVentaRepository;
 import com.adorno.repositorio.UserRepository;
 
@@ -18,22 +18,26 @@ public class PeticionVentaService {
 
 	private final IPeticionVentaRepository peticionVentarepo;
 	private final UserRepository userRepository;
-	
-	
-	public PeticionVentaService(IPeticionVentaRepository peticionVentarepo, UserRepository userRepository) {
+	private final AnuncioVentaService anuncioVentaService;
+
+	public PeticionVentaService(IPeticionVentaRepository peticionVentarepo, UserRepository userRepository, AnuncioVentaService anuncioVentaService) {
 		super();
 		this.peticionVentarepo = peticionVentarepo;
 		this.userRepository = userRepository;
+		this.anuncioVentaService=anuncioVentaService;
 	}
-
 
 	public boolean add(PeticionVenta t) {
-		return this.peticionVentarepo.save(t) != null;
+		
+		boolean retorno =this.peticionVentarepo.save(t) != null;
+//		anuncioVentaService.addPeticion(t);
+		return retorno;
 	}
 
-	public boolean delete(ObjectId id) {
-		Optional<PeticionVenta> petii = this.peticionVentarepo.findById(id);
-		
+	public boolean delete(String id) {
+		ObjectId idObject = new ObjectId(id);
+		Optional<PeticionVenta> petii = this.peticionVentarepo.findById(idObject);
+
 		if (petii.isPresent()) {
 			this.peticionVentarepo.delete(petii.get());
 			return true;
@@ -41,40 +45,29 @@ public class PeticionVentaService {
 		return false;
 	}
 
-	
 	public Optional<PeticionVenta> getById(ObjectId id) {
 		return peticionVentarepo.findById(id);
 	}
 
-	
 	public List<PeticionVenta> findAll() {
 		return this.peticionVentarepo.findAll();
 	}
 
-	
 	public boolean addAll(List<PeticionVenta> t) {
-		 t.stream().forEach((anuncio) -> {
-            if (!peticionVentarepo.findAll().contains(anuncio))
-                peticionVentarepo.save(anuncio);
-        });
-		 return true;
+		t.stream().forEach((anuncio) -> {
+			if (!peticionVentarepo.findAll().contains(anuncio))
+				peticionVentarepo.save(anuncio);
+		});
+		return true;
 	}
 
+	public List<PeticionVenta> getAllByUser(String username) {
+		if (this.userRepository.existsByUsername(username)) {
+			System.out.println(username);
+			return peticionVentarepo.findAllByUsername(username);
 
-
-	
-	public Optional<List<PeticionVenta>> findByPeticionUser(UserEntity user){
-		Optional<UserEntity> usuario=this.userRepository.findByUsername(user.getUsername());
-		if(usuario.isPresent()) {
-			return  Optional.of( peticionVentarepo.findAll()
-					.stream().filter(peti->peti.getUsuarios().equals(user.getUsername()))
-					.collect(Collectors.toList()));
 		}
-		return Optional.ofNullable(null);
-		
+		return new ArrayList<PeticionVenta>();
+
 	}
-	
-	
-
-
 }

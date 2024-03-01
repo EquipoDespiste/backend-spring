@@ -13,18 +13,19 @@ public abstract class Anuncio {
 	private ObjectId id;
 	private Long idMovil;
 	private String descripcion;
+	private String username;
 	private EstadoAnuncio estadoAnuncio;
 	// ESTO ES PROVISIONAL
 	private EstadoMovil estado;
 	private String tipoAnuncio;
-	public Anuncio(Long idMovil, String descripcion, EstadoMovil estado, String tipoAnuncio) {
+
+	public Anuncio(Long idMovil, String descripcion, String username, EstadoMovil estado, String tipoAnuncio) {
 		super();
 		this.idMovil = idMovil;
+		this.username= username;
 		this.descripcion = descripcion;
 		this.estado = estado;
 		this.tipoAnuncio = tipoAnuncio;
 	}
-	
-	
-	
+
 }

@@ -72,9 +72,9 @@ public class UserService {
 	}
 
 	public boolean delete(String username) {
-		Optional<UserEntity> byUsername = userRepository.findByUsername(username);
-		userRepository.delete(byUsername.get());
-//		userRepository.deleteByUsername(username);
+		UserEntity user;
+		if (userRepository.existsByUsername(username))
+			userRepository.deleteByUsername(username);
 		return true;
 	}
 	

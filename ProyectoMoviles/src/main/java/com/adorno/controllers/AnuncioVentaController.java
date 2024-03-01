@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adorno.modelo.mongo.AnuncioIntercambio;
 import com.adorno.modelo.mongo.AnuncioVenta;
 import com.adorno.modelo.mongo.EstadoAnuncio;
 import com.adorno.services.AnuncioVentaService;
@@ -54,6 +55,11 @@ public class AnuncioVentaController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Boolean> delete(@PathVariable ObjectId id) {
 		return Optional.of(new ResponseEntity<Boolean>(anuncioVentaService.delete(id),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
+	}
+	
+	@GetMapping("findByUsername/{username}")
+	public ResponseEntity<List<AnuncioVenta>> getAnunciosUser(String username){
+		return Optional.of(new ResponseEntity<List<AnuncioVenta>>(anuncioVentaService.getAllByUsername(username),HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
 	}
 	
 }

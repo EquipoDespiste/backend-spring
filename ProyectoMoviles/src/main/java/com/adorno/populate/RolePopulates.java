@@ -15,8 +15,7 @@ import com.adorno.repositorio.RoleRepository;
 import com.adorno.services.UserService;
 
 import jakarta.annotation.PostConstruct;
-
-//@Component
+@Component
 public class RolePopulates {
 	private final RoleRepository roleRepository;
 	private final UserService userService;
